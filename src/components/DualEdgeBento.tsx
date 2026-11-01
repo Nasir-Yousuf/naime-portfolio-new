@@ -57,7 +57,7 @@ export default function DualEdgeBento() {
         </div>
 
         {/* 4 Massive Numbers Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
@@ -65,15 +65,15 @@ export default function DualEdgeBento() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="flex flex-col space-y-2"
+              className="flex flex-col space-y-1 sm:space-y-2"
             >
-              <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter font-mono">
+              <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter font-mono">
                 <AnimatedCounter value={stat.value} />
               </div>
-              <div className="text-sm sm:text-base font-bold text-slate-200">
+              <div className="text-xs sm:text-sm md:text-base font-bold text-slate-200">
                 {stat.label}
               </div>
-              <div className="text-xs text-slate-500 font-mono">
+              <div className="text-[11px] sm:text-xs text-slate-500 font-mono">
                 {stat.context}
               </div>
             </motion.div>

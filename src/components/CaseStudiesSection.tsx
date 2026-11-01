@@ -73,7 +73,7 @@ export default function CaseStudiesSection() {
                 </span>
               </div>
 
-              <div className="text-6xl sm:text-7xl lg:text-8xl font-black text-white tracking-tighter font-mono">
+              <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter font-mono">
                 <AnimatedCounter value={item.metric} />
               </div>
 
