@@ -33,12 +33,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hide default cursor on desktop (custom cursor replaces it) */
-@media (hover: hover) and (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
+/* Accessible cursor handling */
+input, textarea, select { cursor: text !important; }
+button, a { cursor: pointer !important; }
 
 /* Subtle noise grain overlay for editorial depth */
 .noise-overlay {

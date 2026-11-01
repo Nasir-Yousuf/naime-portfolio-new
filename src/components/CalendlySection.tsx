@@ -9,93 +9,87 @@ import {
   ExternalLink,
   ShieldCheck,
   CheckCircle2,
-  Zap,
   Globe,
   ArrowUpRight,
+  MessageCircle,
+  Mail,
 } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
-import SparkleParticle from "@/components/SparkleParticle";
 
 export default function CalendlySection() {
   const { booking, personal } = portfolioData;
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
-  // Calendly embed URL with clean query parameters matching site theme
-  const embedUrl = `${booking.calendlyUrl}?embed_type=Inline&hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=10b981`;
+  // Calendly embed URL with clean query parameters
+  const embedUrl = `${booking.calendlyUrl}?embed_type=Inline&hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=059669`;
 
   return (
     <section
       id="book"
-      className="relative py-12 sm:py-16 border-b border-slate-100 bg-slate-50/50 overflow-hidden"
+      className="relative py-16 sm:py-20 lg:py-24 border-b border-slate-100 bg-white overflow-hidden"
     >
-      {/* Ambient background glows and sparkles */}
-      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-emerald-100/30 rounded-full blur-3xl pointer-events-none -z-10 animate-morph-blob" />
-      <div className="absolute bottom-10 -right-10 w-80 h-80 bg-teal-100/25 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
-      <SparkleParticle className="absolute top-10 right-[10%] hidden sm:block" size="md" color="emerald" delay={0.4} />
-      <SparkleParticle className="absolute bottom-12 left-[8%] hidden sm:block" size="sm" color="teal" variant="four-point-soft" delay={1.2} />
-
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto mb-8 sm:mb-9">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 text-[11px] font-bold tracking-wider uppercase mb-2.5 font-mono">
-            <Calendar className="w-3 h-3 text-emerald-600" />
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-bold tracking-wider uppercase mb-3 font-mono">
+            <Calendar className="w-3.5 h-3.5 text-emerald-600" />
             <span>{booking.badge}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight mb-2.5">
-            Lock in a Conversation.{" "}
-            <span className="text-emerald-500">
-              Pick Your Time.
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight mb-3">
+            Schedule a Discovery &amp;{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
+              Instructor Consultation.
             </span>
           </h2>
 
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
             {booking.subtitle}
           </p>
 
-          {/* Quick Benefit Tags */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-3.5">
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[11px] font-medium shadow-2xs">
+          {/* Quick Logistics Tags */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-medium">
               <Clock className="w-3 h-3 text-emerald-600" />
-              Direct 1-on-1
+              15 / 30 Min Direct Session
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[11px] font-medium shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-medium">
               <Video className="w-3 h-3 text-emerald-600" />
-              Google Meet Auto-Invite
+              Google Meet Instant Invite
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[11px] font-medium shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-medium">
               <Globe className="w-3 h-3 text-emerald-600" />
-              Your Local Timezone
+              Auto Local Timezone
             </span>
           </div>
         </div>
 
         {/* Embedded Calendly Showcase Card */}
-        <div className="rounded-2xl bg-white border border-slate-200/90 shadow-lg shadow-slate-900/5 overflow-hidden">
-          {/* Compact Premium Header Bar */}
-          <div className="px-4 py-3 sm:px-5 sm:py-3.5 bg-slate-900 text-white flex items-center justify-between gap-3 border-b border-slate-800">
-            <div className="flex items-center gap-2.5">
-              <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-400/80 shadow-xs shrink-0">
+        <div className="rounded-3xl bg-white border border-slate-200/90 shadow-xl overflow-hidden">
+          {/* Header Bar */}
+          <div className="px-5 py-4 bg-slate-900 text-white flex items-center justify-between gap-3 border-b border-slate-800">
+            <div className="flex items-center gap-3">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden border-2 border-emerald-400 shrink-0">
                 <Image
-                  src="/images/naime-portrait.png"
+                  src={personal.avatar}
                   alt={personal.name}
                   fill
                   className="object-cover"
-                  style={{ objectPosition: "50% 15%" }}
+                  style={{ objectPosition: "28% 18%" }}
                 />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
                   <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest font-mono">
-                    Live Scheduler
+                    Direct Calendar Sync
                   </span>
                 </div>
-                <h4 className="text-xs sm:text-sm font-bold text-white leading-tight">
-                  Strategy Session with {personal.name}
+                <h4 className="text-sm font-bold text-white leading-tight">
+                  Instructor Consultation with {personal.name}
                 </h4>
               </div>
             </div>
@@ -105,46 +99,46 @@ export default function CalendlySection() {
               href={booking.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs transition-all shadow-xs hover:scale-105 shrink-0"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-xs shrink-0"
             >
-              <span>Open Tab</span>
+              <span>Open in Calendly</span>
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
 
-          {/* Sub-bar Logistics Note */}
-          <div className="px-4 py-2 bg-slate-50 border-b border-slate-100 flex items-center justify-between gap-2 text-[11px] text-slate-500">
-            <span className="flex items-center gap-1.5 truncate">
-              <Video className="w-3 h-3 text-emerald-600 shrink-0" />
-              Google Meet link emailed instantly upon booking
-            </span>
-            <span className="flex items-center gap-1 font-mono text-[10px] text-slate-400 shrink-0">
-              <Globe className="w-3 h-3 text-slate-400 shrink-0" />
-              Auto Timezone
-            </span>
-          </div>
-
-          {/* Calendly Live Iframe Container - Sized Compactly */}
-          <div className="relative w-full h-[460px] sm:h-[490px] bg-white overflow-hidden">
-            {/* Loading placeholder skeleton */}
+          {/* Calendly Live Iframe Container */}
+          <div className="relative w-full h-[520px] bg-slate-50 overflow-hidden">
+            {/* Fallback & Loading Placeholder */}
             {!iframeLoaded && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-slate-50/60 z-0">
-                <div className="w-8 h-8 rounded-full border-2 border-emerald-200 border-t-emerald-600 animate-spin mb-2.5" />
-                <p className="text-xs font-bold text-slate-800">
-                  Loading Calendar...
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-slate-50 z-0">
+                <div className="w-9 h-9 rounded-full border-2 border-emerald-200 border-t-emerald-600 animate-spin mb-3" />
+                <p className="text-sm font-bold text-slate-800">
+                  Loading Live Calendar...
                 </p>
-                <p className="text-[11px] text-slate-500 mt-0.5 max-w-xs text-center">
-                  Connecting directly to the live booking calendar.
+                <p className="text-xs text-slate-500 mt-1 max-w-sm text-center mb-4">
+                  If the embedded calendar takes a moment or is blocked by third-party cookies, click below to open directly:
                 </p>
-                <a
-                  href={booking.calendlyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 px-3 py-1.5 rounded-full bg-slate-900 text-white text-[11px] font-bold hover:bg-emerald-600 transition-colors inline-flex items-center gap-1"
-                >
-                  <span>Open Directly on Calendly</span>
-                  <ArrowUpRight className="w-3 h-3" />
-                </a>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <a
+                    href={booking.calendlyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-full bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors inline-flex items-center gap-1.5 shadow-sm"
+                  >
+                    <span>Open Calendar on Calendly.com</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+
+                  <a
+                    href={`https://wa.me/${personal.phone.replace(/[^0-9]/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-full bg-white border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors inline-flex items-center gap-1.5"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>WhatsApp Directly</span>
+                  </a>
+                </div>
               </div>
             )}
 
@@ -152,24 +146,24 @@ export default function CalendlySection() {
             <iframe
               src={embedUrl}
               onLoad={() => setIframeLoaded(true)}
-              className="relative z-10 w-full h-[460px] sm:h-[490px] border-0"
-              title={`Book a meeting with ${personal.name}`}
+              className="relative z-10 w-full h-[520px] border-0"
+              title={`Book an instructor meeting with ${personal.name}`}
             />
           </div>
 
-          {/* Compact Trust Guarantees */}
-          <div className="px-4 py-2.5 bg-slate-50/90 border-t border-slate-100 flex flex-wrap items-center justify-around gap-2 text-[11px] text-slate-600 text-center">
-            <span className="flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+          {/* Guarantees Bar */}
+          <div className="px-5 py-3 bg-slate-50 border-t border-slate-200/80 flex flex-wrap items-center justify-around gap-3 text-xs text-slate-600">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
               100% Free Consultation
             </span>
-            <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              Instant Calendar Sync
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              Instant Google Calendar Invite
             </span>
-            <span className="flex items-center gap-1">
-              <Zap className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              1-Click Reschedule
+            <span className="flex items-center gap-1.5">
+              <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
+              Syllabus PDF Shared on Request
             </span>
           </div>
         </div>

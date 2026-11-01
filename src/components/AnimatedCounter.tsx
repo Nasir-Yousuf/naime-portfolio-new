@@ -12,22 +12,25 @@ interface AnimatedCounterProps {
 export default function AnimatedCounter({
   value,
   className = "",
-  duration = 1.6,
+  duration = 1.4,
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const isNumeric = /^([^\d]*)(\d+)([^\d]*)$/.test(value);
-  const [displayValue, setDisplayValue] = useState<string>(() => (isNumeric ? "0" : value));
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px" });
+  const [displayValue, setDisplayValue] = useState<string>(value);
 
   useEffect(() => {
-    if (!isInView || !isNumeric) return;
+    if (!isInView) return;
 
-    const match = value.match(/^([^\d]*)(\d+)([^\d]*)$/);
+    const match = value.match(/^([^\d]*?)(\d+(?:\.\d+)?)([^\d]*)$/);
     if (!match) return;
 
     const prefix = match[1] || "";
-    const targetNumber = parseInt(match[2], 10);
+    const rawNum = match[2];
     const suffix = match[3] || "";
+    const isDecimal = rawNum.includes(".");
+    const targetNumber = parseFloat(rawNum);
+
+    if (isNaN(targetNumber)) return;
 
     let startTime: number | null = null;
     let animationFrameId: number;
@@ -36,9 +39,10 @@ export default function AnimatedCounter({
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
       
-      // Easing out cubic
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(easeOut * targetNumber);
+      const current = isDecimal
+        ? (easeOut * targetNumber).toFixed(1)
+        : Math.floor(easeOut * targetNumber);
 
       setDisplayValue(`${prefix}${current}${suffix}`);
 
@@ -52,7 +56,7 @@ export default function AnimatedCounter({
     animationFrameId = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isInView, isNumeric, value, duration]);
+  }, [isInView, value, duration]);
 
   return (
     <span ref={ref} className={className}>

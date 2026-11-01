@@ -14,20 +14,17 @@ import {
 } from "lucide-react";
 import { LinkedinIcon } from "@/components/SocialIcons";
 import { portfolioData } from "@/data/portfolio";
-import SparkleParticle from "@/components/SparkleParticle";
-import TiltCard from "@/components/TiltCard";
 
 export default function Contact() {
   const { personal } = portfolioData;
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     organization: "",
     email: "",
-    roleType: "Instructor / Training Cohort",
+    inquiryType: "Instructor / Faculty Appointment",
     message: "",
   });
 
@@ -39,39 +36,41 @@ export default function Contact() {
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personal.email);
     setCopiedEmail(true);
-    showToastNotification("Email copied to clipboard!");
+    showToastNotification("Email address copied to clipboard!");
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   const handleCopyPhone = () => {
     navigator.clipboard.writeText(personal.phone);
     setCopiedPhone(true);
-    showToastNotification("Phone number copied to clipboard!");
+    showToastNotification("WhatsApp / phone number copied to clipboard!");
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const mailtoUrl = `mailto:${personal.email}?subject=${encodeURIComponent(
-      `[${formData.roleType}] Inquiry from ${formData.name}`
+      `[${formData.inquiryType}] Opportunity from ${formData.name} (${formData.organization || "Independent"})`
     )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nOrganization: ${formData.organization}\nEmail: ${formData.email}\nInquiry Type: ${formData.roleType}\n\nMessage:\n${formData.message}`
+      `Hello Naime,\n\nI am contacting you regarding an opportunity:\n\nName: ${formData.name}\nOrganization/Institution: ${formData.organization}\nEmail: ${formData.email}\nInquiry Type: ${formData.inquiryType}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`
     )}`;
     window.location.href = mailtoUrl;
-    setSubmitted(true);
-    showToastNotification("Opening your email client...");
-    setTimeout(() => setSubmitted(false), 4000);
+    showToastNotification("Opening your email client to send message...");
   };
 
-  const roleOptions = [
-    "Instructor / Training Cohort",
-    "Agency Growth Marketing",
-    "Corporate Workshop",
-    "General Consultation",
+  const inquiryOptions = [
+    "Instructor / Faculty Appointment",
+    "Vocational Training Cohort (NSDA/NIYD)",
+    "Private Academy Masterclass",
+    "Corporate Team Workshop",
+    "Performance Marketing Consultation",
   ];
 
   return (
-    <section id="contact" className="relative py-16 sm:py-20 lg:py-24 bg-white border-t border-slate-100 overflow-hidden">
+    <section
+      id="contact"
+      className="relative py-16 sm:py-20 lg:py-24 bg-slate-50/60 border-t border-slate-100 overflow-hidden"
+    >
       {/* Toast Notification */}
       <AnimatePresence>
         {toastMessage && (
@@ -89,304 +88,257 @@ export default function Contact() {
         )}
       </AnimatePresence>
 
-      {/* Ambient background glows and sparkles */}
-      <div className="absolute top-10 -left-10 w-80 h-80 bg-emerald-100/35 rounded-full blur-3xl pointer-events-none -z-10 animate-morph-blob" />
-      <div className="absolute bottom-10 right-0 w-80 h-80 bg-teal-100/30 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
-      <SparkleParticle className="absolute top-12 left-[8%] hidden sm:block" size="lg" color="emerald" delay={0.3} />
-      <SparkleParticle className="absolute bottom-24 right-[7%] hidden sm:block" size="md" color="teal" variant="four-point-soft" delay={1.1} />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Banner Card */}
         <div className="rounded-3xl bg-slate-900 text-white p-8 sm:p-12 mb-14 relative overflow-hidden shadow-2xl border border-slate-800">
-          {/* Luminous emerald glow in the banner */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/20 blur-3xl rounded-full pointer-events-none animate-morph-blob" />
-          <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-teal-500/15 blur-3xl rounded-full pointer-events-none animate-pulse-glow" />
-          <SparkleParticle className="absolute top-6 right-10 hidden sm:block" size="lg" color="emerald" delay={0.5} />
-          <SparkleParticle className="absolute bottom-8 right-28 hidden sm:block" size="sm" color="teal" variant="diamond" delay={1.4} />
-
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/15 blur-3xl rounded-full pointer-events-none" />
           <div className="relative z-10 max-w-2xl mx-auto text-center space-y-4 flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-wider font-mono">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-wider font-mono">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
               </span>
               <span>Available for New Engagements</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.18]">
-              Let&apos;s build something{" "}
-              <span className="text-emerald-400">exceptional.</span>
+              Invite Me to Teach or{" "}
+              <span className="text-emerald-400">Collaborate.</span>
             </h2>
 
             <p className="text-base text-slate-300 leading-relaxed max-w-xl">
-              Whether you need an articulate, structured instructor for your next marketing cohort or a battle-tested strategist to scale performance marketing campaigns, let&apos;s start the conversation.
+              Whether you are looking for an articulate, structured instructor for your training institute, academy, or university, or a seasoned strategist for performance campaigns, let&apos;s start the conversation.
             </p>
 
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-              <motion.a
-                whileHover={{ y: -3, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <a
                 href={`https://wa.me/${personal.phone.replace(/[^0-9]/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shimmer-card inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/25 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/25 transition-all"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Chat on WhatsApp</span>
-              </motion.a>
+                <span>Chat Directly on WhatsApp</span>
+              </a>
 
-              <motion.button
-                whileHover={{ y: -3, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleCopyEmail}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-xs sm:text-sm border border-white/20 backdrop-blur-md transition-all"
+              <a
+                href={`mailto:${personal.email}`}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 transition-all"
               >
-                {copiedEmail ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                <span>{copiedEmail ? "Email Copied!" : "Copy Email"}</span>
-              </motion.button>
+                <Mail className="w-4 h-4 text-emerald-400" />
+                <span>Send Direct Email</span>
+              </a>
             </div>
           </div>
         </div>
 
-        {/* 2-Column Contact Info + Form */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start">
-          {/* Left Column: Direct Contact Info */}
-          <div className="md:col-span-5 space-y-6">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                Direct Channels
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Fast responses guaranteed within 24 business hours.
-              </p>
+        {/* 2-Column Split: Contact Channels (Left) & Inquiry Form (Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Direct Contact Info (5 cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <h3 className="text-xl font-bold text-slate-900 mb-2">
+              Direct Contact Channels
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+              Feel free to reach out directly through email, WhatsApp, or LinkedIn. I typically respond within 24 hours.
+            </p>
+
+            {/* Email Card */}
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                    Email Address
+                  </span>
+                  <a
+                    href={`mailto:${personal.email}`}
+                    className="text-xs sm:text-sm font-bold text-slate-800 hover:text-emerald-600 font-mono"
+                  >
+                    {personal.email}
+                  </a>
+                </div>
+              </div>
+              <button
+                onClick={handleCopyEmail}
+                className="p-2 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-colors"
+                title="Copy Email"
+              >
+                {copiedEmail ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+              </button>
             </div>
 
-            <div className="space-y-3">
-              {/* Email */}
-              <TiltCard maxTilt={5}>
-                <motion.div
-                  whileHover={{ y: -2, scale: 1.01 }}
-                  transition={{ duration: 0.2 }}
-                  className="editorial-card shimmer-card glow-beam p-4 rounded-2xl bg-white border border-slate-100 flex items-center justify-between shadow-sm hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all cursor-default"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
-                      <Mail className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-mono">
-                        Direct Email
-                      </span>
-                      <a
-                        href={`mailto:${personal.email}`}
-                        className="text-xs sm:text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors"
-                      >
-                        {personal.email}
-                      </a>
-                    </div>
-                  </div>
-                  <button
-                    onClick={handleCopyEmail}
-                    className="p-2 text-slate-400 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                    title="Copy email"
+            {/* WhatsApp / Phone Card */}
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                    WhatsApp &amp; Phone
+                  </span>
+                  <a
+                    href={`https://wa.me/${personal.phone.replace(/[^0-9]/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs sm:text-sm font-bold text-slate-800 hover:text-emerald-600 font-mono"
                   >
-                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                  </button>
-                </motion.div>
-              </TiltCard>
+                    {personal.phone}
+                  </a>
+                </div>
+              </div>
+              <button
+                onClick={handleCopyPhone}
+                className="p-2 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-colors"
+                title="Copy Phone"
+              >
+                {copiedPhone ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+              </button>
+            </div>
 
-              {/* Phone */}
-              <TiltCard maxTilt={5}>
-                <motion.div
-                  whileHover={{ y: -2, scale: 1.01 }}
-                  transition={{ duration: 0.2 }}
-                  className="editorial-card shimmer-card glow-beam p-4 rounded-2xl bg-white border border-slate-100 flex items-center justify-between shadow-sm hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all cursor-default"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
-                      <Phone className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-mono">
-                        Phone / WhatsApp
-                      </span>
-                      <a
-                        href={`tel:${personal.phone}`}
-                        className="text-xs sm:text-sm font-bold text-slate-900 hover:text-emerald-600 font-mono transition-colors"
-                      >
-                        {personal.phone}
-                      </a>
-                    </div>
-                  </div>
-                  <button
-                    onClick={handleCopyPhone}
-                    className="p-2 text-slate-400 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-                    title="Copy phone"
-                  >
-                    {copiedPhone ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                  </button>
-                </motion.div>
-              </TiltCard>
-
-              {/* LinkedIn */}
-              <TiltCard maxTilt={5}>
-                <motion.div
-                  whileHover={{ y: -2, scale: 1.01 }}
-                  transition={{ duration: 0.2 }}
-                  className="editorial-card shimmer-card glow-beam p-4 rounded-2xl bg-white border border-slate-100 flex items-center justify-between shadow-sm hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all cursor-default"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600">
-                      <LinkedinIcon className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-mono">
-                        LinkedIn Profile
-                      </span>
-                      <a
-                        href={personal.socials.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs sm:text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors"
-                      >
-                        shinewithnaime
-                      </a>
-                    </div>
-                  </div>
+            {/* LinkedIn Profile */}
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
+                  <LinkedinIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                    LinkedIn Network
+                  </span>
                   <a
                     href={personal.socials.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-slate-400 hover:text-emerald-600 rounded-lg hover:bg-slate-100 transition-colors"
-                    title="Open LinkedIn"
+                    className="text-xs sm:text-sm font-bold text-slate-800 hover:text-emerald-600"
                   >
-                    <ArrowUpRight className="w-4 h-4" />
+                    linkedin.com/in/shinewithnaime
                   </a>
-                </motion.div>
-              </TiltCard>
-
-              {/* Location */}
-              <motion.div
-                whileHover={{ y: -3, x: 2, scale: 1.015 }}
-                transition={{ duration: 0.2 }}
-                className="editorial-card p-4 rounded-2xl bg-white border border-slate-100 flex items-center gap-3 shadow-sm hover:border-slate-200"
+                </div>
+              </div>
+              <a
+                href={personal.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-colors"
               >
-                <div className="p-2.5 rounded-xl bg-slate-100 text-slate-700">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-mono">
-                    Location &amp; Mobility
-                  </span>
-                  <span className="text-xs sm:text-sm font-semibold text-slate-900">
-                    {personal.location} (Remote &amp; Onsite)
-                  </span>
-                </div>
-              </motion.div>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Location Pill */}
+            <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+                <MapPin className="w-5 h-5 text-emerald-600" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                  Location &amp; Availability
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-slate-800 block">
+                  {personal.location}
+                </span>
+                <span className="text-[11px] text-slate-500">
+                  Open for Onsite Training &amp; Remote Engagements
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Interactive Booking Form */}
-          <div className="md:col-span-7 editorial-card shimmer-card glow-beam p-6 sm:p-8 rounded-3xl bg-white border border-slate-100 shadow-sm">
+          {/* Right Column: Inquiry Form (7 cols) */}
+          <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm">
             <h3 className="text-xl font-bold text-slate-900 mb-1">
-              Send an Inquiry
+              Send an Opportunity Inquiry
             </h3>
             <p className="text-xs text-slate-500 mb-6">
-              Select your inquiry objective below for quick alignment.
+              Complete the form below to initiate an instructor or consulting discussion.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Role Type Selector Pills */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2">
-                  What are you looking to collaborate on?
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {roleOptions.map((opt) => (
-                    <motion.button
-                      type="button"
-                      key={opt}
-                      whileHover={{ scale: 1.04 }}
-                      whileTap={{ scale: 0.96 }}
-                      onClick={() => setFormData({ ...formData, roleType: opt })}
-                      className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all border ${
-                        formData.roleType === opt
-                          ? "bg-emerald-500 text-white border-emerald-500 shadow-sm shadow-emerald-500/20"
-                          : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                      }`}
-                    >
-                      {opt}
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Your Name
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Your Name *
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. John Doe"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 focus:bg-white transition-all"
+                    placeholder="e.g., Dr. Kabir / Recruiter Name"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 bg-slate-50/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Organization / Company
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                    Organization / Training Institute
                   </label>
                   <input
                     type="text"
                     value={formData.organization}
                     onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="e.g. Training Institute / Agency"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 focus:bg-white transition-all"
+                    placeholder="e.g., Skills Development Academy"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 bg-slate-50/50"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Email Address
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Email Address *
                 </label>
                 <input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="john@example.com"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 focus:bg-white transition-all"
+                  placeholder="name@organization.com"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 bg-slate-50/50"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Project / Cohort Details
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Opportunity Type
+                </label>
+                <select
+                  value={formData.inquiryType}
+                  onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 bg-slate-50/50"
+                >
+                  {inquiryOptions.map((opt, oIdx) => (
+                    <option key={oIdx} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Message / Brief Requirements *
                 </label>
                 <textarea
-                  rows={4}
                   required
+                  rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Briefly describe your schedule, syllabus needs, or campaign objectives..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 focus:bg-white transition-all resize-none"
+                  placeholder="Share details about your cohort, timeline, curriculum focus, or appointment expectations..."
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 bg-slate-50/50"
                 />
               </div>
 
-              <motion.button
-                whileHover={{ y: -2, scale: 1.015 }}
-                whileTap={{ scale: 0.98 }}
+              <button
                 type="submit"
-                className="shimmer-card w-full py-3.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all cursor-pointer"
+                className="w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-all shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Send className="w-4 h-4" />
-                <span>{submitted ? "Launching Email Client..." : "Send Inquiry"}</span>
-              </motion.button>
+                <span>Submit Inquiry via Email</span>
+              </button>
             </form>
           </div>
         </div>

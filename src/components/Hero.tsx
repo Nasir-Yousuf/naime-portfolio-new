@@ -1,408 +1,342 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+import { motion } from "motion/react";
 import {
   ArrowRight,
   GraduationCap,
-  TrendingUp,
+  Briefcase,
+  Bot,
   MapPin,
-  Sparkles,
-  Mail,
-  MessageCircle,
+  Calendar,
+  ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
-import { LinkedinIcon } from "@/components/SocialIcons";
-import SparkleParticle from "@/components/SparkleParticle";
+import {
+  ChatGPTIcon,
+  GeminiIcon,
+  ClaudeIcon,
+  CanvaIcon,
+  AdobeFireflyIcon,
+  PerplexityIcon,
+  NotebookLMIcon,
+} from "@/components/BrandIcons";
 import { portfolioData } from "@/data/portfolio";
-
-// Staggered entrance config
-const entrance = (delay: number) => ({
-  initial: { opacity: 0, y: 25, filter: "blur(6px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-  transition: { duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
-});
 
 export default function Hero() {
   const { personal } = portfolioData;
-  const [roleMode, setRoleMode] = useState<"instructor" | "marketer">("instructor");
 
-  // Mouse-tracking parallax for portrait
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const portraitRef = useRef<HTMLDivElement>(null);
-
-  const springConfig = { damping: 30, stiffness: 150 };
-  const rotateX = useSpring(useTransform(mouseY, [-300, 300], [5, -5]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-5, 5]), springConfig);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!portraitRef.current) return;
-      const rect = portraitRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      mouseX.set(e.clientX - centerX);
-      mouseY.set(e.clientY - centerY);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  const platformSkills = [
-    "Meta Ads Manager",
-    "Google Ads (Search & Display)",
-    "Conversion Funnels (CRO)",
-    "Curriculum & Pedagogical Design",
-    "International Client Account Ops",
-    "GA4 & Marketing Telemetry",
-    "Lead Generation Architectures",
-    "B2B LinkedIn Marketing",
-    "Organic Growth Loops",
-    "Retention & Email Workflows",
-  ];
+  // Stagger entrance animation definition
+  const fadeUp = (delay: number) => ({
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
+  });
 
   return (
-    <section className="relative pt-24 pb-12 sm:pt-28 sm:pb-14 lg:pt-32 lg:pb-16 overflow-hidden border-b border-slate-100">
-      {/* Floating Sparkle Constellation in Background */}
-      <SparkleParticle className="absolute top-16 left-[5%] hidden md:block" size="lg" color="emerald" delay={0.2} />
-      <SparkleParticle className="absolute top-44 left-[16%] hidden lg:block" size="sm" color="teal" variant="four-point-soft" delay={0.8} />
-      <SparkleParticle className="absolute bottom-28 left-[4%] hidden md:block" size="lg" color="teal" delay={1.2} />
-      <SparkleParticle className="absolute top-20 right-[10%] hidden lg:block" size="xl" color="purple" delay={0.5} />
-      <SparkleParticle className="absolute bottom-32 right-[5%] hidden md:block" size="md" color="emerald" variant="diamond" delay={1.5} />
-      <SparkleParticle className="absolute top-1/3 right-[32%] hidden xl:block" size="sm" color="amber" delay={2} />
-
-      {/* Multi-layered Organic Morphing Aurora Backdrop */}
-      <div className="absolute top-1/2 left-[48%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-emerald-200/25 via-teal-100/20 to-purple-200/20 blur-3xl rounded-full pointer-events-none -z-10 animate-morph-blob" />
-      <div className="absolute top-1/4 left-[35%] w-[400px] h-[300px] bg-emerald-300/15 blur-[90px] rounded-full pointer-events-none -z-10 animate-pulse-glow" />
+    <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24 overflow-hidden border-b border-slate-100">
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 -left-32 w-[520px] h-[520px] bg-gradient-to-tr from-emerald-100/40 via-teal-100/20 to-transparent blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-1/3 -right-32 w-[520px] h-[520px] bg-gradient-to-bl from-indigo-100/30 via-purple-100/20 to-transparent blur-[130px] pointer-events-none -z-10" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Sleek Animated Dual Role Selector */}
-        <motion.div className="flex justify-start mb-6" {...entrance(0.4)}>
-          <div className="inline-flex p-1 rounded-full bg-slate-100/80 border border-slate-200/80 backdrop-blur-md shadow-2xs">
-            <button
-              onClick={() => setRoleMode("instructor")}
-              className={`relative px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-1.5 ${
-                roleMode === "instructor"
-                  ? "text-white"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
+          {/* Left Column: Core Positioning Copy & Institutional CTA (7 cols) */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Credential Badge */}
+            <motion.div {...fadeUp(0.1)} className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-800 text-xs font-bold tracking-wide font-mono shadow-2xs">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                <span>NSDA Level-3 Certified Marketer</span>
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+                <GraduationCap className="w-3.5 h-3.5 text-slate-500" />
+                <span>Practitioner-Instructor</span>
+              </span>
+            </motion.div>
+
+            {/* Primary Headline */}
+            <motion.div {...fadeUp(0.2)} className="space-y-2">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+                Digital Marketing,{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600">
+                  Freelancing
+                </span>{" "}
+                &amp; AI Instructor
+              </h1>
+            </motion.div>
+
+            {/* Supporting Copy */}
+            <motion.p
+              {...fadeUp(0.3)}
+              className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl"
             >
-              {roleMode === "instructor" && (
-                <motion.div
-                  layoutId="hero-role-pill"
-                  className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full shadow-md shadow-emerald-500/30"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10 flex items-center gap-1.5">
-                <GraduationCap className="w-3.5 h-3.5" />
-                <span>Freelancing Instructor</span>
-              </span>
-            </button>
+              {personal.tagline}
+            </motion.p>
 
-            <button
-              onClick={() => setRoleMode("marketer")}
-              className={`relative px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-1.5 ${
-                roleMode === "marketer"
-                  ? "text-white"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              {roleMode === "marketer" && (
-                <motion.div
-                  layoutId="hero-role-pill"
-                  className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full shadow-md shadow-emerald-500/30"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10 flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5" />
-                <span>Marketing Instructor</span>
-              </span>
-            </button>
-          </div>
-        </motion.div>
+            {/* Three Interconnected Pillars Summary Pills */}
+            <motion.div {...fadeUp(0.4)} className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+              <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:border-emerald-300 transition-colors">
+                <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs mb-1">
+                  <Briefcase className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>100+ Accounts</span>
+                </div>
+                <p className="text-[11px] text-slate-600 leading-tight">
+                  Real agency execution across Meta Ads, Google Ads &amp; lead funnels.
+                </p>
+              </div>
 
-        {/* Mobile Header: Greeting & Role Title displayed before the photo */}
-        <div className="md:hidden space-y-1 mb-5">
-          <motion.div {...entrance(0.55)}>
-            <div className="inline-flex items-center gap-2 text-3xl font-extrabold text-slate-900 tracking-tight">
-              <span>Hi, I&apos;m</span>
-              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 bg-[length:200%_auto] animate-gradient-x underline decoration-emerald-200 decoration-4 underline-offset-8">
-                {personal.name.split(" ")[1] || personal.name}
-                <span className="absolute -top-2 -right-3 text-emerald-400 text-sm animate-twinkle pointer-events-none">
-                  ✦
-                </span>
-              </span>
-            </div>
+              <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:border-teal-300 transition-colors">
+                <div className="flex items-center gap-2 text-teal-700 font-bold text-xs mb-1">
+                  <GraduationCap className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                  <span>5+ Yrs Pedagogy</span>
+                </div>
+                <p className="text-[11px] text-slate-600 leading-tight">
+                  Mathematics teaching background applied to structured lesson clarity.
+                </p>
+              </div>
 
-            {/* Subheading / Role Title */}
-            <AnimatePresence mode="wait">
-              <motion.h1
-                key={`mobile-${roleMode}`}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-                className="text-2xl font-bold text-slate-800 tracking-tight leading-snug pt-1"
-              >
-                {roleMode === "marketer"
-                  ? "Digital Marketing & Growth Strategist"
-                  : "Digital Marketing Instructor & Pedagogue"}
-              </motion.h1>
-            </AnimatePresence>
-          </motion.div>
-        </div>
+              <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:border-purple-300 transition-colors">
+                <div className="flex items-center gap-2 text-purple-700 font-bold text-xs mb-1">
+                  <Bot className="w-3.5 h-3.5 text-purple-600 shrink-0" />
+                  <span>Modern AI Workflows</span>
+                </div>
+                <p className="text-[11px] text-slate-600 leading-tight">
+                  Practical generative AI integration for research, copy &amp; automation.
+                </p>
+              </div>
+            </motion.div>
 
-        {/* Hero 2-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-8 items-center mb-10 sm:mb-14">
-          {/* Portrait Column: On mobile comes directly under the mobile title; on desktop placed on the right (order-2) */}
-          <motion.div
-            className="md:col-span-6 xl:col-span-5 md:order-2 flex justify-center md:justify-end relative my-2 md:my-0"
-            {...entrance(0.6)}
-          >
+            {/* Clear Hero Calls to Action */}
             <motion.div
-              ref={portraitRef}
-              className="relative w-full max-w-[320px] xs:max-w-[350px] sm:max-w-[420px] md:max-w-[460px] mx-auto md:mx-0"
-              style={{
-                rotateX,
-                rotateY,
-                transformStyle: "preserve-3d",
-                perspective: 1000,
-              }}
+              {...fadeUp(0.5)}
+              className="pt-2 flex flex-wrap items-center gap-3.5"
             >
-              {/* Offset Decorative Pastel Card with Connected Circular Nodes */}
-              <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-emerald-100/70 via-teal-50/50 to-purple-100/50 border border-emerald-200/50 translate-x-3.5 translate-y-3.5 pointer-events-none -z-10">
-                {/* Connected Emerald Nodes / Dots at corners */}
-                <div className="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-emerald-400 border-2 border-white shadow-md flex items-center justify-center animate-pulse">
-                  <span className="w-2 h-2 rounded-full bg-white" />
-                </div>
-                <div className="absolute -bottom-2 -left-2 w-5 h-5 rounded-full bg-teal-400 border-2 border-white shadow-md animate-pulse" />
-              </div>
+              <a
+                href="#teaching"
+                id="hero-explore-teaching-cta"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 hover:shadow-lg hover:shadow-emerald-600/30 transition-all group"
+              >
+                <span>Explore My Teaching Profile</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
 
-              {/* Floating Top-Left Micro Badge */}
-              <div className="absolute -top-4 -left-3 sm:-top-5 sm:-left-5 z-20 px-3.5 py-1.5 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-xl shadow-slate-900/10 flex items-center gap-2 animate-float-reverse hover:scale-105 transition-transform cursor-default select-none">
-                <span className="p-1 rounded-lg bg-emerald-50 text-emerald-600 font-bold text-xs">
-                  ⚡
+              <a
+                href="#contact"
+                id="hero-discuss-role-cta"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm border border-slate-300 shadow-2xs hover:border-slate-400 transition-all"
+              >
+                <Calendar className="w-4 h-4 text-emerald-600" />
+                <span>Discuss an Instructor Opportunity</span>
+              </a>
+            </motion.div>
+
+            {/* Location & Availability Status Indicator */}
+            <motion.div
+              {...fadeUp(0.6)}
+              className="pt-1 flex flex-wrap items-center gap-4 text-xs text-slate-500 font-medium"
+            >
+              <div className="flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                <span>{personal.location}</span>
+              </div>
+              <span className="text-slate-300 hidden sm:inline">•</span>
+              <div className="flex items-center gap-1.5 text-slate-700 font-semibold">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                <div className="text-left leading-none">
-                  <span className="text-xs font-extrabold text-slate-900 font-mono block">
-                    100+
-                  </span>
-                  <span className="text-[9px] font-semibold text-slate-500">
-                    Accounts Scaled
-                  </span>
-                </div>
+                <span>Open for Institutional Faculty, Training Batches &amp; Corporate Cohorts</span>
               </div>
+            </motion.div>
+          </div>
 
-              {/* Floating Right-Center Micro Badge */}
-              <div className="absolute top-[38%] -right-3 sm:-right-5 -translate-y-1/2 z-20 px-3.5 py-1.5 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-xl shadow-slate-900/10 flex items-center gap-2 animate-float-diagonal hover:scale-105 transition-transform cursor-default select-none hidden sm:flex">
-                <span className="p-1 rounded-lg bg-teal-50 text-teal-600 font-bold text-xs">
-                  📈
-                </span>
-                <div className="text-left leading-none">
-                  <span className="text-xs font-extrabold text-emerald-600 font-mono block">
-                    3.2x
-                  </span>
-                  <span className="text-[9px] font-semibold text-slate-500">
-                    Peak ROAS
-                  </span>
-                </div>
-              </div>
+          {/* Right Column: Hero Portrait Composition with Floating AI Tool Logos (5 cols) */}
+          <div className="lg:col-span-5 flex justify-center relative mt-6 lg:mt-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px]"
+            >
+              {/* Layered Decorative Pastel Backdrop Card */}
+              <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-emerald-100/60 via-teal-50/40 to-indigo-100/40 border border-emerald-200/60 translate-x-3.5 translate-y-3.5 pointer-events-none -z-10" />
 
-              {/* Main Portrait Frame with Float Animation */}
-              <div className="relative rounded-[2.2rem] bg-slate-900 border-4 border-white shadow-2xl overflow-hidden aspect-[4/4.5] group">
+              {/* Main Portrait Container */}
+              <div className="relative rounded-[2.2rem] bg-slate-900 border-4 border-white shadow-2xl overflow-hidden aspect-[4/4.8] group">
                 <Image
                   src="/images/naime-hero.jpg"
-                  alt={personal.name}
+                  alt="Naime - Digital Marketing, Freelancing & AI Instructor"
                   fill
                   priority
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="object-cover group-hover:scale-103 transition-transform duration-700 ease-out"
                   style={{ objectPosition: "28% 18%" }}
                 />
 
-                {/* Subtle vignette for contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
+                {/* Subtle vignette on bottom for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
 
-                {/* Top-Right Floating Status Pill with Live Radar Wave */}
-                <div className="absolute top-3.5 right-3.5 z-10">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-slate-100 text-[11px] font-bold text-slate-800 shadow-sm">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-                    </span>
-                    Available for Work
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Story & Details Column: On desktop placed on the left (order-1); on mobile, renders underneath the portrait photo */}
-          <div className="md:col-span-6 xl:col-span-7 md:order-1 space-y-5">
-            {/* Desktop-Only Greeting & Title (hidden on mobile since mobile header shows it above photo) */}
-            <motion.div className="hidden md:block space-y-1" {...entrance(0.55)}>
-              <div className="inline-flex items-center gap-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-                <span>Hi, I&apos;m</span>
-                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 bg-[length:200%_auto] animate-gradient-x underline decoration-emerald-200 decoration-4 underline-offset-8">
-                  {personal.name.split(" ")[1] || personal.name}
-                  <span className="absolute -top-2 -right-3 text-emerald-400 text-sm animate-twinkle pointer-events-none">
-                    ✦
-                  </span>
-                </span>
-              </div>
-
-              {/* Subheading / Role Title */}
-              <AnimatePresence mode="wait">
-                <motion.h1
-                  key={`desktop-${roleMode}`}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  className="text-2xl sm:text-3xl lg:text-[2.4rem] font-bold text-slate-800 tracking-tight leading-snug pt-1"
-                >
-                  {roleMode === "marketer"
-                    ? "Digital Marketing & Growth Strategist"
-                    : "Digital Marketing Instructor & Pedagogue"}
-                </motion.h1>
-              </AnimatePresence>
-            </motion.div>
-
-            {/* Narrative Paragraph */}
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={roleMode}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.25 }}
-                className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl"
-              >
-                {roleMode === "marketer"
-                  ? "I scale businesses through high-intent paid ad funnels, international account execution, and conversion optimization. 100+ foreign clients managed with data-first accountability."
-                  : "I turn real-world campaign mechanics into intuitive, reproducible training frameworks. 5+ years of mathematics pedagogy applied to ads, attribution, and growth systems."}
-              </motion.p>
-            </AnimatePresence>
-
-            {/* Shimmer Pill Action Buttons */}
-            <motion.div className="pt-2 flex flex-wrap items-center gap-3.5" {...entrance(0.75)}>
-              <motion.a
-                whileHover={{ y: -3, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                href="#work"
-                id="hero-primary-cta"
-                className="shimmer-card inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-sm shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/35 transition-all group"
-              >
-                <span>{roleMode === "marketer" ? "View Case Studies" : "View Curriculum & Pedagogy"}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </motion.a>
-
-              <motion.a
-                whileHover={{ y: -3, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                href="#contact"
-                id="hero-secondary-cta"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/90 hover:bg-slate-50 text-slate-700 font-semibold text-sm border border-slate-200 shadow-sm transition-all hover:border-slate-300"
-              >
-                <span>Contact Me</span>
-              </motion.a>
-            </motion.div>
-
-            {/* Current Focus 2026 Card */}
-            <motion.div className="pt-2" {...entrance(0.8)}>
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-sm space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-extrabold text-emerald-600 tracking-wider uppercase font-mono flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-500 animate-spin-slow" />
-                    CURRENT FOCUS • 2026
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] font-bold text-emerald-700 font-mono">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                    </span>
-                    Active Ops
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 font-medium">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm">🚀</span>
-                    <span className="truncate">Scaling Paid Funnels (100+ Accounts)</span>
+                {/* Bottom Portrait Name Overlay Pill */}
+                <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-md">
+                  <div>
+                    <h3 className="text-sm font-extrabold text-slate-900 leading-tight">
+                      Naime
+                    </h3>
+                    <p className="text-[10px] font-semibold text-emerald-700">
+                      NSDA Level-3 Certified Marketer
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm">🏆</span>
-                    <span className="truncate">NSDA Level-3 Certified Marketer</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm">🎓</span>
-                    <span className="truncate">Mathematics &amp; Pedagogy (5+ Yrs)</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm">⚡</span>
-                    <span className="truncate">Next Clicker Lead Strategist</span>
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                    <span>Verified</span>
                   </div>
                 </div>
               </div>
-            </motion.div>
 
-            {/* Meta Row: Location + Divider + Social Links */}
-            <motion.div className="pt-2 flex items-center gap-4 text-xs font-medium text-slate-500" {...entrance(0.85)}>
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-emerald-500" />
-                <span>{personal.location}</span>
-              </div>
+              {/* ─────────────────────────────────────────────────────────────
+                  FLOATING AI TOOL LOGOS ORBITING THE PORTRAIT
+                  Positioned intentionally around the edges so they never obscure the face.
+                 ───────────────────────────────────────────────────────────── */}
 
-              <span className="text-slate-300">|</span>
+              {/* 1. ChatGPT (OpenAI) — Top Left */}
+              <motion.div
+                animate={{
+                  y: [-4, 4, -4],
+                  rotate: [-1, 1, -1],
+                }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-4 -left-4 sm:-top-5 sm:-left-5 z-20 p-2.5 sm:p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-lg shadow-slate-900/10 flex items-center gap-2 hover:scale-110 transition-transform cursor-pointer group"
+                title="OpenAI ChatGPT — Prompt Engineering & Strategy"
+              >
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
+                  <ChatGPTIcon size={18} />
+                </div>
+                <div className="text-left hidden sm:block pr-1">
+                  <span className="text-[11px] font-extrabold text-slate-900 block leading-tight">
+                    ChatGPT
+                  </span>
+                  <span className="text-[9px] font-semibold text-slate-500 block leading-none">
+                    Prompt Strategy
+                  </span>
+                </div>
+              </motion.div>
 
-              <div className="flex items-center gap-2.5">
-                <a
-                  href={personal.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="p-1.5 rounded-full hover:bg-emerald-50 hover:text-emerald-600 text-slate-500 transition-transform hover:scale-110"
-                >
-                  <LinkedinIcon className="w-4 h-4" />
-                </a>
+              {/* 2. Google Gemini — Top Right */}
+              <motion.div
+                animate={{
+                  y: [4, -4, 4],
+                  rotate: [1, -1, 1],
+                }}
+                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 z-20 p-2.5 sm:p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-lg shadow-slate-900/10 flex items-center gap-2 hover:scale-110 transition-transform cursor-pointer group"
+                title="Google Gemini — Real-Time Research & Multimodal Analysis"
+              >
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
+                  <GeminiIcon size={18} />
+                </div>
+                <div className="text-left hidden sm:block pr-1">
+                  <span className="text-[11px] font-extrabold text-slate-900 block leading-tight">
+                    Gemini
+                  </span>
+                  <span className="text-[9px] font-semibold text-slate-500 block leading-none">
+                    Market Research
+                  </span>
+                </div>
+              </motion.div>
 
-                <a
-                  href={`mailto:${personal.email}`}
-                  aria-label="Email"
-                  className="p-1.5 rounded-full hover:bg-emerald-50 hover:text-emerald-600 text-slate-500 transition-transform hover:scale-110"
-                >
-                  <Mail className="w-4 h-4" />
-                </a>
+              {/* 3. Claude (Anthropic) — Left Center */}
+              <motion.div
+                animate={{
+                  y: [3, -5, 3],
+                  x: [-2, 2, -2],
+                }}
+                transition={{ duration: 5.1, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                className="absolute top-[40%] -left-5 sm:-left-7 z-20 p-2.5 sm:p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-lg shadow-slate-900/10 flex items-center gap-2 hover:scale-110 transition-transform cursor-pointer"
+                title="Anthropic Claude — Long-Form Content & High-Converting Copy"
+              >
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-orange-500/10 flex items-center justify-center shrink-0">
+                  <ClaudeIcon size={18} />
+                </div>
+                <div className="text-left hidden sm:block pr-1">
+                  <span className="text-[11px] font-extrabold text-slate-900 block leading-tight">
+                    Claude
+                  </span>
+                  <span className="text-[9px] font-semibold text-slate-500 block leading-none">
+                    Copywriting
+                  </span>
+                </div>
+              </motion.div>
 
-                <a
-                  href={personal.socials.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp"
-                  className="p-1.5 rounded-full hover:bg-emerald-50 hover:text-emerald-600 text-slate-500 transition-transform hover:scale-110"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                </a>
-              </div>
+              {/* 4. Canva Magic Studio — Right Center */}
+              <motion.div
+                animate={{
+                  y: [-5, 3, -5],
+                  x: [2, -2, 2],
+                }}
+                transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
+                className="absolute top-[38%] -right-5 sm:-right-7 z-20 p-2.5 sm:p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-lg shadow-slate-900/10 flex items-center gap-2 hover:scale-110 transition-transform cursor-pointer"
+                title="Canva Magic Studio — Ad Creatives & Visual Collaterals"
+              >
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center shrink-0">
+                  <CanvaIcon size={24} />
+                </div>
+                <div className="text-left hidden sm:block pr-1">
+                  <span className="text-[11px] font-extrabold text-slate-900 block leading-tight">
+                    Canva
+                  </span>
+                  <span className="text-[9px] font-semibold text-slate-500 block leading-none">
+                    Creative Studio
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* 5. Perplexity AI — Bottom Left Edge */}
+              <motion.div
+                animate={{
+                  y: [-3, 4, -3],
+                }}
+                transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 z-20 p-2 rounded-xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-md flex items-center gap-1.5 hover:scale-110 transition-transform"
+                title="Perplexity AI — Source-Grounded Competitor Research"
+              >
+                <div className="w-6 h-6 rounded-lg bg-teal-50 flex items-center justify-center shrink-0">
+                  <PerplexityIcon size={14} />
+                </div>
+                <span className="text-[10px] font-bold text-slate-700 pr-1">Perplexity</span>
+              </motion.div>
+
+              {/* 6. Adobe Firefly — Bottom Right Edge */}
+              <motion.div
+                animate={{
+                  y: [4, -3, 4],
+                }}
+                transition={{ duration: 4.9, repeat: Infinity, ease: "easeInOut", delay: 1.7 }}
+                className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 z-20 p-2 rounded-xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-md flex items-center gap-1.5 hover:scale-110 transition-transform"
+                title="Adobe Firefly — Commercial Generative Imagery"
+              >
+                <div className="w-6 h-6 rounded-lg overflow-hidden flex items-center justify-center shrink-0">
+                  <AdobeFireflyIcon size={18} />
+                </div>
+                <span className="text-[10px] font-bold text-slate-700 pr-1">Firefly</span>
+              </motion.div>
+
+              {/* 7. NotebookLM — Top Center Floating Accent */}
+              <motion.div
+                animate={{
+                  y: [-3, 3, -3],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                className="hidden md:flex absolute -top-5 left-1/2 -translate-x-1/2 z-20 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-md items-center gap-1.5 hover:scale-105 transition-transform"
+                title="Google NotebookLM — Brand & Knowledge Synthesis"
+              >
+                <NotebookLMIcon size={14} />
+                <span className="text-[10px] font-extrabold text-slate-800">NotebookLM</span>
+              </motion.div>
+
             </motion.div>
           </div>
-        </div>
-      </div>
 
-      {/* Modern Infinite Scrolling Tech Ticker with Hover Pause */}
-      <div className="mt-8 sm:mt-10 py-3 bg-slate-50/80 border-y border-slate-100 overflow-hidden">
-        <div className="flex items-center gap-8 animate-marquee whitespace-nowrap">
-          {[...platformSkills, ...platformSkills].map((skill, index) => (
-            <div
-              key={index}
-              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-emerald-600 transition-colors cursor-default"
-            >
-              <span className="w-2 h-2 rounded-full bg-emerald-500/70 animate-pulse" />
-              <span>{skill}</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>

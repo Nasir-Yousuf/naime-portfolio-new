@@ -23,22 +23,25 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Naime | Digital Marketing & Growth Specialist • Instructor",
-  description: "NSDA Level-3 Certified Digital Marketer with 4+ years of industry experience, 100+ international clients, agency background, and classroom teaching expertise.",
+  title: "Naime | Digital Marketing, Freelancing & AI Instructor",
+  description:
+    "NSDA Level-3 Certified Digital Marketer with 100+ international accounts managed, 5+ years of mathematics pedagogy, and practical AI workflow integration for modern marketing education.",
   keywords: [
     "Digital Marketing Instructor",
-    "Digital Marketing Trainer",
-    "Growth Specialist",
-    "NSDA Certified Marketer",
-    "International Client Management",
+    "Freelancing Instructor",
+    "AI Marketing Trainer",
+    "NSDA Level-3 Certified Marketer",
     "Meta Ads Trainer",
+    "Google Ads Training",
+    "Corporate Marketing Trainer Bangladesh",
+    "Digital Marketing Pedagogy",
     "Naime Digital Marketer",
-    "Corporate Marketing Training Bangladesh",
   ],
   authors: [{ name: "Naime" }],
   openGraph: {
-    title: "Naime | Digital Marketing & Growth Specialist • Instructor",
-    description: "I turn real-world marketing experience into practical learning. NSDA Level-3 Certified with 100+ international clients.",
+    title: "Naime | Digital Marketing, Freelancing & AI Instructor",
+    description:
+      "I turn real-world digital marketing experience into practical learning, helping individuals and businesses develop modern, career-ready skills.",
     type: "website",
     locale: "en_US",
   },
@@ -70,4 +73,3 @@ export default function RootLayout({
     </html>
   );
 }
-

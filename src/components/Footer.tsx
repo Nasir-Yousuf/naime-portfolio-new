@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Mail, MessageCircle } from "lucide-react";
 import { LinkedinIcon } from "@/components/SocialIcons";
 import { portfolioData } from "@/data/portfolio";
 
@@ -13,45 +13,47 @@ export default function Footer() {
   };
 
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About & Edge", href: "#bento" },
-    { name: "Case Studies", href: "#work" },
-    { name: "Skills", href: "#expertise" },
+    { name: "About & Edge", href: "#about" },
+    { name: "What I Teach", href: "#teaching" },
+    { name: "AI Toolkit", href: "#ai-toolkit" },
+    { name: "Methodology", href: "#methodology" },
     { name: "Experience", href: "#experience" },
-    { name: "Book Call", href: "#book" },
+    { name: "Case Studies", href: "#case-studies" },
+    { name: "Credentials", href: "#credentials" },
+    { name: "Schedule Call", href: "#book" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <footer className="border-t border-slate-100 bg-white py-12 text-slate-800">
+    <footer className="border-t border-slate-200 bg-white py-12 text-slate-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-100">
           {/* Brand & Positioning */}
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <div className="relative w-7 h-7 rounded-full overflow-hidden border border-emerald-500 shadow-xs shrink-0">
+          <div className="space-y-1.5 max-w-sm">
+            <div className="flex items-center gap-2.5">
+              <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-500 shadow-xs shrink-0">
                 <Image
-                  src="/images/naime-portrait.png"
+                  src={personal.avatar}
                   alt={personal.name}
                   fill
                   className="object-cover"
-                  style={{ objectPosition: "50% 15%" }}
+                  style={{ objectPosition: "28% 18%" }}
                 />
               </div>
               <span className="font-extrabold text-slate-950 text-base tracking-tight">
                 {personal.name}
-                <span className="text-emerald-500">.</span>
+                <span className="text-emerald-600">.</span>
               </span>
             </div>
-            <p className="text-xs text-slate-600 font-medium">
-              Digital Marketing Strategist &amp; Instructor
+            <p className="text-xs text-slate-700 font-bold">
+              Digital Marketing, Freelancing &amp; AI Instructor
             </p>
-            <p className="text-[11px] text-slate-400">
-              Sirajganj, Bangladesh • Open for Remote &amp; Onsite Engagements
+            <p className="text-[11px] text-slate-500 leading-relaxed">
+              NSDA Level-3 Certified Marketer • 100+ International Accounts Managed • 5+ Years Mathematics Pedagogy.
             </p>
           </div>
 
-          {/* Quick Nav Links & Socials */}
+          {/* Quick Nav Links */}
           <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-600">
             {navLinks.map((link) => (
               <a
@@ -62,42 +64,51 @@ export default function Footer() {
                 {link.name}
               </a>
             ))}
+          </div>
 
-            <span className="text-slate-300 hidden sm:inline">|</span>
+          {/* Back to Top */}
+          <button
+            onClick={scrollToTop}
+            className="p-2.5 rounded-full bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-600 transition-all flex items-center justify-center shrink-0"
+            aria-label="Scroll back to top"
+            title="Back to Top"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </button>
+        </div>
 
+        {/* Bottom Metadata & Institutional Integrity */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <p>© {new Date().getFullYear()} {personal.name}. All rights reserved.</p>
+
+          <div className="flex items-center gap-4">
             <a
               href={personal.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="p-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-600 hover:text-emerald-600 hover:border-emerald-300 transition-colors"
-              title="LinkedIn Profile"
+              className="text-slate-500 hover:text-emerald-600 transition-colors flex items-center gap-1 font-medium"
             >
               <LinkedinIcon className="w-3.5 h-3.5" />
+              <span>LinkedIn</span>
             </a>
-          </div>
 
-          {/* Back to top */}
-          <button
-            onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-emerald-600 hover:border-emerald-300 transition-all shadow-2xs"
-            aria-label="Back to top"
-            id="footer-back-to-top"
-          >
-            <span>Top</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
-        </div>
+            <a
+              href={`https://wa.me/${personal.phone.replace(/[^0-9]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-emerald-600 transition-colors flex items-center gap-1 font-medium"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp</span>
+            </a>
 
-        {/* Bottom copyright & legal */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
-          <p>© 2026 {personal.name}. All rights reserved.</p>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50/80 border border-emerald-200/60 text-emerald-800 text-[11px] font-medium font-mono">
-            <span>NSDA Level-3 Certified</span>
-            <span>•</span>
-            <span>100+ Global Accounts</span>
-            <span>•</span>
-            <span>5+ Years Teaching Experience</span>
+            <a
+              href={`mailto:${personal.email}`}
+              className="text-slate-500 hover:text-emerald-600 transition-colors flex items-center gap-1 font-medium"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>Email</span>
+            </a>
           </div>
         </div>
       </div>
