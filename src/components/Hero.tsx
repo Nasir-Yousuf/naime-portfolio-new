@@ -12,10 +12,16 @@ import {
   ChatGPTIcon,
   GeminiIcon,
   ClaudeIcon,
-  CanvaIcon,
-  AdobeFireflyIcon,
-  PerplexityIcon,
-  NotebookLMIcon,
+  FacebookIcon,
+  InstagramIcon,
+  GoogleAdsIcon,
+  YouTubeIcon,
+  TikTokIcon,
+  UpworkIcon,
+  LinkedInBrandIcon,
+  MetaAdsIcon,
+  MidjourneyIcon,
+  WhatsAppIcon,
 } from "@/components/BrandIcons";
 import { portfolioData } from "@/data/portfolio";
 
@@ -28,8 +34,19 @@ export default function Hero() {
     transition: { duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] as const },
   });
 
+  const platforms = [
+    { name: "Google Ads", icon: <GoogleAdsIcon size={16} /> },
+    { name: "Meta Ads", icon: <MetaAdsIcon size={16} /> },
+    { name: "Facebook", icon: <FacebookIcon size={16} /> },
+    { name: "Instagram", icon: <InstagramIcon size={16} /> },
+    { name: "YouTube", icon: <YouTubeIcon size={16} /> },
+    { name: "TikTok Ads", icon: <TikTokIcon size={16} /> },
+    { name: "LinkedIn", icon: <LinkedInBrandIcon size={16} /> },
+    { name: "Upwork", icon: <UpworkIcon size={16} /> },
+  ];
+
   return (
-    <section className="relative pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden bg-slate-950 text-white border-b border-slate-900">
+    <section className="relative pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 overflow-hidden bg-slate-950 text-white border-b border-slate-900">
       {/* Cinematic Ambient Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-emerald-500/10 blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute -top-24 -right-24 w-[500px] h-[500px] bg-teal-500/10 blur-[150px] pointer-events-none rounded-full" />
@@ -49,7 +66,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Bold Typography & Instructor Identity (7 cols) */}
-          <div className="lg:col-span-7 space-y-8 text-left">
+          <div className="lg:col-span-7 space-y-7 text-left">
             
             {/* Credential Status Pill */}
             <motion.div {...fadeUp(0.08)} className="inline-flex flex-wrap items-center gap-2">
@@ -83,7 +100,7 @@ export default function Hero() {
             </motion.p>
 
             {/* Primary Action Buttons */}
-            <motion.div {...fadeUp(0.38)} className="flex flex-wrap items-center gap-3 pt-2">
+            <motion.div {...fadeUp(0.38)} className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="#teaching"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 group"
@@ -102,7 +119,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Micro Credibility Line */}
-            <motion.div {...fadeUp(0.45)} className="pt-2 flex items-center gap-6 text-xs text-slate-400 font-mono">
+            <motion.div {...fadeUp(0.44)} className="flex items-center gap-4 sm:gap-6 text-xs text-slate-400 font-mono">
               <span className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
                 100+ Accounts Managed
@@ -113,10 +130,51 @@ export default function Hero() {
               <span>NIYD Trained</span>
             </motion.div>
 
+            {/* Digital Marketing Platforms & Ad Networks Row */}
+            <motion.div {...fadeUp(0.5)} className="pt-4 border-t border-slate-900">
+              <div className="text-[11px] font-mono text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span>Core Marketing &amp; Ad Platforms Taught:</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                {platforms.map((p, idx) => (
+                  <div
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800/90 hover:border-emerald-500/50 hover:bg-slate-850 text-xs text-slate-300 font-mono transition-all duration-200 cursor-default"
+                  >
+                    {p.icon}
+                    <span>{p.name}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
           </div>
 
-          {/* Right Column: Hero Portrait with Floating AI Tool Ecosystem (5 cols) */}
+          {/* Right Column: Hero Portrait with Orbiting Squircle Badges (matching reference style) */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
+            
+            {/* Constellation Network Geometry Lines behind the portrait */}
+            <svg
+              className="absolute -inset-16 w-[130%] h-[130%] pointer-events-none opacity-25"
+              viewBox="0 0 500 500"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line x1="80" y1="80" x2="160" y2="180" stroke="#10b981" strokeWidth="1" strokeDasharray="3 3" />
+              <line x1="420" y1="80" x2="340" y2="180" stroke="#10b981" strokeWidth="1" strokeDasharray="3 3" />
+              <line x1="60" y1="240" x2="160" y2="280" stroke="#14b8a6" strokeWidth="1" strokeDasharray="3 3" />
+              <line x1="440" y1="240" x2="340" y2="280" stroke="#14b8a6" strokeWidth="1" strokeDasharray="3 3" />
+              <line x1="90" y1="400" x2="180" y2="350" stroke="#8b5cf6" strokeWidth="1" strokeDasharray="3 3" />
+              <line x1="410" y1="400" x2="320" y2="350" stroke="#8b5cf6" strokeWidth="1" strokeDasharray="3 3" />
+              <circle cx="80" cy="80" r="3" fill="#10b981" />
+              <circle cx="420" cy="80" r="3" fill="#10b981" />
+              <circle cx="60" cy="240" r="3" fill="#14b8a6" />
+              <circle cx="440" cy="240" r="3" fill="#14b8a6" />
+              <circle cx="90" cy="400" r="3" fill="#8b5cf6" />
+              <circle cx="410" cy="400" r="3" fill="#8b5cf6" />
+            </svg>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -156,76 +214,108 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Orbiting Brand Badge 1: ChatGPT (Top Left) */}
+              {/* ===== ORBITING APP TILES (MATCHING USER REFERENCE IMAGE) ===== */}
+
+              {/* 1. Claude AI (Top Left) */}
               <motion.div
                 animate={{ y: [-4, 4, -4], x: [-1, 2, -1] }}
                 transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -left-4 z-20 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-white backdrop-blur-md shadow-xl flex items-center gap-2 hover:scale-105 transition-transform"
+                className="absolute -top-5 -left-5 sm:-top-7 sm:-left-7 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
+                title="Anthropic Claude AI"
               >
-                <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <ChatGPTIcon className="w-3.5 h-3.5 text-emerald-400" />
-                </div>
-                <span className="text-xs font-mono font-bold text-slate-200">ChatGPT</span>
+                <ClaudeIcon size={22} />
               </motion.div>
 
-              {/* Orbiting Brand Badge 2: Google Gemini (Top Right) */}
+              {/* 2. Google Gemini (Upper-Mid Left) */}
               <motion.div
-                animate={{ y: [4, -4, 4], x: [2, -1, 2] }}
+                animate={{ y: [4, -4, 4], x: [1, -2, 1] }}
                 transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-                className="absolute -top-3 -right-4 z-20 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-white backdrop-blur-md shadow-xl flex items-center gap-2 hover:scale-105 transition-transform"
+                className="absolute top-[22%] -left-7 sm:-left-9 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
+                title="Google Gemini AI"
               >
-                <GeminiIcon size={16} />
-                <span className="text-xs font-mono font-bold text-slate-200">Gemini</span>
+                <GeminiIcon size={22} />
               </motion.div>
 
-              {/* Orbiting Brand Badge 3: Claude (Center Left) */}
+              {/* 3. Meta / Google Ads (Lower-Mid Left) */}
               <motion.div
                 animate={{ y: [-5, 3, -5] }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                className="absolute top-[42%] -left-8 z-20 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-white backdrop-blur-md shadow-xl flex items-center gap-2 hover:scale-105 transition-transform"
+                transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                className="absolute top-[52%] -left-7 sm:-left-9 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
+                title="Meta Ads (Facebook & Instagram)"
               >
-                <ClaudeIcon size={16} />
-                <span className="text-xs font-mono font-bold text-slate-200">Claude</span>
+                <MetaAdsIcon size={24} />
               </motion.div>
 
-              {/* Orbiting Brand Badge 4: Canva (Center Right) */}
-              <motion.div
-                animate={{ y: [3, -5, 3] }}
-                transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
-                className="absolute top-[38%] -right-8 z-20 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-white backdrop-blur-md shadow-xl flex items-center gap-2 hover:scale-105 transition-transform"
-              >
-                <CanvaIcon size={18} />
-                <span className="text-xs font-mono font-bold text-slate-200">Canva</span>
-              </motion.div>
-
-              {/* Orbiting Brand Badge 5: Perplexity (Bottom Left) */}
+              {/* 4. Midjourney (Bottom Left) */}
               <motion.div
                 animate={{ y: [-3, 4, -3] }}
-                transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute -bottom-4 -left-3 z-20 px-2.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-white backdrop-blur-md shadow-xl flex items-center gap-1.5 hover:scale-105 transition-transform"
+                transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+                className="absolute -bottom-4 -left-4 sm:-bottom-5 sm:-left-6 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer text-slate-900"
+                title="Midjourney Generative AI"
               >
-                <PerplexityIcon size={14} />
-                <span className="text-[11px] font-mono font-semibold text-slate-300">Perplexity</span>
+                <MidjourneyIcon size={22} />
               </motion.div>
 
-              {/* Orbiting Brand Badge 6: Firefly (Bottom Right) */}
+              {/* 5. ChatGPT (Top Right) */}
+              <motion.div
+                animate={{ y: [-4, 4, -4], x: [1, -2, 1] }}
+                transition={{ duration: 5.0, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                className="absolute -top-5 -right-5 sm:-top-7 sm:-right-7 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer text-emerald-600"
+                title="OpenAI ChatGPT"
+              >
+                <ChatGPTIcon className="w-6 h-6 text-emerald-600" size={24} />
+              </motion.div>
+
+              {/* 6. YouTube (Upper-Mid Right) */}
+              <motion.div
+                animate={{ y: [4, -4, 4], x: [-1, 2, -1] }}
+                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+                className="absolute top-[22%] -right-7 sm:-right-9 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
+                title="YouTube Video Marketing & Ads"
+              >
+                <YouTubeIcon size={22} />
+              </motion.div>
+
+              {/* 7. Facebook (Lower-Mid Right) */}
+              <motion.div
+                animate={{ y: [-3, 5, -3] }}
+                transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1.0 }}
+                className="absolute top-[52%] -right-7 sm:-right-9 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
+                title="Facebook Advertising & Community Growth"
+              >
+                <FacebookIcon size={24} />
+              </motion.div>
+
+              {/* 8. WhatsApp (Bottom Right) */}
               <motion.div
                 animate={{ y: [4, -3, 4] }}
-                transition={{ duration: 4.9, repeat: Infinity, ease: "easeInOut", delay: 1.7 }}
-                className="absolute -bottom-4 -right-3 z-20 px-2.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-white backdrop-blur-md shadow-xl flex items-center gap-1.5 hover:scale-105 transition-transform"
+                transition={{ duration: 4.9, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
+                className="absolute -bottom-4 -right-4 sm:-bottom-5 sm:-right-6 z-20 w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
+                title="WhatsApp Business & Direct Conversions"
               >
-                <AdobeFireflyIcon size={16} />
-                <span className="text-[11px] font-mono font-semibold text-slate-300">Firefly</span>
+                <WhatsAppIcon size={24} />
               </motion.div>
 
-              {/* Orbiting Brand Badge 7: NotebookLM (Top Center) */}
+              {/* 9. Google Ads (Top Center Floating Badge) */}
               <motion.div
                 animate={{ y: [-3, 3, -3] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-                className="hidden sm:flex absolute -top-8 left-1/2 -translate-x-1/2 z-20 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-800 text-white backdrop-blur-md shadow-xl items-center gap-1.5"
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
+                className="hidden sm:flex absolute -top-9 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1.5 rounded-full bg-white shadow-xl shadow-black/40 border border-slate-100 items-center gap-2 hover:scale-105 transition-transform cursor-pointer"
+                title="Google Ads & Search Engine Marketing"
               >
-                <NotebookLMIcon size={14} />
-                <span className="text-[11px] font-mono font-semibold text-slate-300">NotebookLM</span>
+                <GoogleAdsIcon size={16} />
+                <span className="text-xs font-mono font-bold text-slate-800">Google Ads</span>
+              </motion.div>
+
+              {/* 10. Instagram (Bottom Center Floating Badge) */}
+              <motion.div
+                animate={{ y: [3, -3, 3] }}
+                transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+                className="hidden sm:flex absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1.5 rounded-full bg-white shadow-xl shadow-black/40 border border-slate-100 items-center gap-2 hover:scale-105 transition-transform cursor-pointer"
+                title="Instagram Ads & Visual Performance"
+              >
+                <InstagramIcon size={16} />
+                <span className="text-xs font-mono font-bold text-slate-800">Instagram</span>
               </motion.div>
 
             </motion.div>
