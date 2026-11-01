@@ -11,6 +11,7 @@ export interface PersonalInfo {
   availability: string;
   resumeUrl?: string;
   avatar: string;
+  portrait?: string;
   socials: {
     linkedin: string;
     whatsapp: string;
@@ -171,6 +172,7 @@ export const portfolioData = {
     availability: "Available for Instructor Roles, Institutional Batches & Corporate Training",
     resumeUrl: "#contact",
     avatar: "/images/naime-hero.jpg",
+    portrait: "/images/naime-portrait.png",
     socials: {
       linkedin: "https://www.linkedin.com/in/shinewithnaime/",
       whatsapp: "https://wa.me/8801625596245",

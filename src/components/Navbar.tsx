@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, GraduationCap } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Navbar() {
@@ -12,19 +12,18 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "What I Teach", href: "#teaching" },
-    { name: "AI Toolkit", href: "#ai-toolkit" },
+    { name: "Curriculum", href: "#teaching" },
+    { name: "AI Ecosystem", href: "#ai-toolkit" },
     { name: "Methodology", href: "#methodology" },
     { name: "Experience", href: "#experience" },
-    { name: "Case Studies", href: "#case-studies" },
+    { name: "Results", href: "#case-studies" },
     { name: "Credentials", href: "#credentials" },
   ];
 
@@ -32,18 +31,15 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
+          ? "py-3 bg-slate-950/90 backdrop-blur-md border-b border-slate-900 shadow-md"
           : "py-4 sm:py-5 bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Brand Identity */}
-        <a
-          href="#"
-          className="flex items-center gap-2.5 group"
-          id="nav-logo"
-        >
-          <div className="relative w-9 h-9 rounded-full overflow-hidden border-2 border-emerald-500 shadow-xs shrink-0 group-hover:scale-105 transition-transform">
+        
+        {/* Brand Logo */}
+        <a href="#" className="flex items-center gap-2.5 group">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-400/80 shrink-0">
             <Image
               src={portfolioData.personal.avatar}
               alt={portfolioData.personal.name}
@@ -54,50 +50,49 @@ export default function Navbar() {
             />
           </div>
           <div>
-            <span className="font-extrabold text-slate-900 tracking-tight text-base sm:text-lg block leading-none group-hover:text-emerald-700 transition-colors">
+            <span className="font-black text-white text-base tracking-tight block leading-none">
               {portfolioData.personal.name}
-              <span className="text-emerald-600">.</span>
+              <span className="text-emerald-400">.</span>
             </span>
-            <span className="text-[10px] font-semibold text-slate-500 block leading-tight">
-              Instructor &amp; Practitioner
+            <span className="text-[10px] font-mono text-slate-400 block leading-tight">
+              Instructor
             </span>
           </div>
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 rounded-full px-4 py-1.5 bg-white/80 border border-slate-200/80 shadow-xs backdrop-blur-md">
+        {/* Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-1 rounded-full px-4 py-1.5 bg-slate-900/80 border border-slate-800 backdrop-blur-md">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-emerald-700 rounded-full hover:bg-emerald-50/70 transition-all"
+              className="px-3 py-1 text-xs font-mono text-slate-300 hover:text-white rounded-full hover:bg-slate-800 transition-colors"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Primary CTA */}
+        {/* Action Button */}
         <div className="hidden sm:flex items-center gap-3">
           <a
-            href="#contact"
-            id="nav-instructor-cta"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm shadow-emerald-600/20 transition-all"
+            href="#book"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all shadow-sm"
           >
-            <GraduationCap className="w-3.5 h-3.5" />
-            <span>Invite Me to Teach</span>
+            <span>Book a Call</span>
+            <ArrowRight className="w-3 h-3" />
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Toggle Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation"
-          id="mobile-nav-toggle"
-          className="lg:hidden p-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-emerald-600 focus:outline-none"
+          className="md:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white focus:outline-none"
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
+
       </div>
 
       {/* Mobile Drawer */}
@@ -108,33 +103,26 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-slate-200 px-6 py-6 space-y-3 shadow-xl"
+            className="md:hidden bg-slate-950/98 backdrop-blur-xl border-b border-slate-900 px-6 py-6 space-y-3 shadow-2xl"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-sm font-semibold text-slate-800 hover:text-emerald-600 border-b border-slate-100"
+                className="block py-2 text-sm font-mono text-slate-300 hover:text-emerald-400 border-b border-slate-900"
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-3 flex flex-col gap-2">
-              <a
-                href="#contact"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-full text-xs font-bold bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm"
-              >
-                <GraduationCap className="w-4 h-4" />
-                <span>Invite Me to Teach</span>
-              </a>
+            <div className="pt-3">
               <a
                 href="#book"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full text-xs font-mono font-bold bg-emerald-500 text-slate-950"
               >
-                <span>Schedule Discovery Call</span>
+                <span>Book a Call</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </motion.div>
