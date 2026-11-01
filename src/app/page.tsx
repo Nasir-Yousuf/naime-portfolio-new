@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import DualEdgeBento from "@/components/DualEdgeBento";
+import VideoShowcase from "@/components/VideoShowcase";
 import WhatITeach from "@/components/WhatITeach";
 import AIToolkitSection from "@/components/AIToolkitSection";
 import TeachingMethodology from "@/components/TeachingMethodology";
@@ -28,28 +29,31 @@ export default function Home() {
         {/* 2. Bold Numbers on Pure Black */}
         <DualEdgeBento />
 
-        {/* 3. What I Teach (Scannable Topic Tag Clouds) */}
+        {/* 3. The Instructor in Action: Cinematic Video Masterclass & Story */}
+        <VideoShowcase />
+
+        {/* 4. What I Teach (Scannable Topic Tag Clouds) */}
         <WhatITeach />
 
-        {/* 4. AI Ecosystem (Clean 2-Column List on Dark) */}
+        {/* 5. AI Ecosystem (Clean 2-Column List on Dark) */}
         <AIToolkitSection />
 
-        {/* 5. 5-Step Pedagogy Framework */}
+        {/* 6. 5-Step Pedagogy Framework */}
         <TeachingMethodology />
 
-        {/* 6. Clean Career Timeline */}
+        {/* 7. Clean Career Timeline */}
         <ExperienceTimeline />
 
-        {/* 7. Commercial Proof (Giant Numbers on Black) */}
+        {/* 8. Commercial Proof (Giant Numbers on Black) */}
         <CaseStudiesSection />
 
-        {/* 8. Institutional Credentials Strip */}
+        {/* 9. Institutional Credentials Strip */}
         <CredentialsSection />
 
-        {/* 9. Direct Calendar Booking */}
+        {/* 10. Direct Calendar Booking */}
         <CalendlySection />
 
-        {/* 10. Direct Inquiries */}
+        {/* 11. Direct Inquiries */}
         <Contact />
       </main>
 

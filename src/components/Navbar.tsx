@@ -19,11 +19,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { name: "Story & Video", href: "#video" },
     { name: "Curriculum", href: "#teaching" },
     { name: "AI Ecosystem", href: "#ai-toolkit" },
     { name: "Methodology", href: "#methodology" },
     { name: "Experience", href: "#experience" },
-    { name: "Results", href: "#case-studies" },
     { name: "Credentials", href: "#credentials" },
   ];
 
