@@ -99,7 +99,7 @@ function HeroPortrait({ isMobile = false }: { isMobile?: boolean }) {
           className="absolute -top-3.5 -left-3.5 sm:-top-6 sm:-left-6 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
           title="Anthropic Claude AI"
         >
-          <ClaudeIcon className="w-4 h-4 sm:w-5 sm:h-5" size={20} />
+          <ClaudeIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" size={24} />
         </motion.div>
 
         {/* 2. Google Gemini (Upper-Mid Left) */}
@@ -109,7 +109,7 @@ function HeroPortrait({ isMobile = false }: { isMobile?: boolean }) {
           className="absolute top-[22%] -left-4 sm:-left-7 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
           title="Google Gemini AI"
         >
-          <GeminiIcon className="w-4 h-4 sm:w-5 sm:h-5" size={20} />
+          <GeminiIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" size={24} />
         </motion.div>
 
         {/* 3. Meta Ads (Lower-Mid Left) */}
@@ -119,7 +119,7 @@ function HeroPortrait({ isMobile = false }: { isMobile?: boolean }) {
           className="absolute top-[52%] -left-4 sm:-left-7 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
           title="Meta Ads (Facebook & Instagram)"
         >
-          <MetaAdsIcon className="w-4 h-4 sm:w-5 sm:h-5" size={20} />
+          <MetaAdsIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" size={24} />
         </motion.div>
 
         {/* 4. Midjourney (Bottom Left) */}
@@ -129,17 +129,17 @@ function HeroPortrait({ isMobile = false }: { isMobile?: boolean }) {
           className="absolute -bottom-3 -left-3 sm:-bottom-5 sm:-left-5 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer text-slate-900"
           title="Midjourney Generative AI"
         >
-          <MidjourneyIcon className="w-4 h-4 sm:w-5 sm:h-5" size={19} />
+          <MidjourneyIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" size={24} />
         </motion.div>
 
         {/* 5. ChatGPT (Top Right) */}
         <motion.div
           animate={{ y: [-3, 3, -3], x: [1, -1, 1] }}
           transition={{ duration: 5.0, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-          className="absolute -top-3.5 -right-3.5 sm:-top-6 sm:-right-6 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer text-emerald-600"
+          className="absolute -top-3.5 -right-3.5 sm:-top-6 sm:-right-6 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer text-[#10A37F]"
           title="OpenAI ChatGPT"
         >
-          <ChatGPTIcon className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" size={20} />
+          <ChatGPTIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6 text-[#10A37F]" size={24} />
         </motion.div>
 
         {/* 6. YouTube (Upper-Mid Right) */}
@@ -149,7 +149,7 @@ function HeroPortrait({ isMobile = false }: { isMobile?: boolean }) {
           className="absolute top-[22%] -right-4 sm:-right-7 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
           title="YouTube Video Marketing & Ads"
         >
-          <YouTubeIcon className="w-4 h-4 sm:w-5 sm:h-5" size={19} />
+          <YouTubeIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" size={24} />
         </motion.div>
 
         {/* 7. Facebook (Lower-Mid Right) */}
@@ -159,7 +159,7 @@ function HeroPortrait({ isMobile = false }: { isMobile?: boolean }) {
           className="absolute top-[52%] -right-4 sm:-right-7 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
           title="Facebook Advertising"
         >
-          <FacebookIcon className="w-4 h-4 sm:w-5 sm:h-5" size={20} />
+          <FacebookIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" size={24} />
         </motion.div>
 
         {/* 8. WhatsApp (Bottom Right) */}
@@ -169,29 +169,29 @@ function HeroPortrait({ isMobile = false }: { isMobile?: boolean }) {
           className="absolute -bottom-3 -right-3 sm:-bottom-5 sm:-right-5 z-20 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center justify-center hover:scale-115 transition-transform cursor-pointer"
           title="WhatsApp Business & Direct Conversions"
         >
-          <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5" size={20} />
+          <WhatsAppIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" size={24} />
         </motion.div>
 
         {/* 9. Google Ads (Top Center Floating Badge) */}
         <motion.div
           animate={{ y: [-2, 2, -2] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
-          className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2 z-20 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center gap-1.5 hover:scale-105 transition-transform cursor-pointer"
+          className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2 z-20 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center gap-1.5 hover:scale-105 transition-transform cursor-pointer"
           title="Google Ads & Search Marketing"
         >
-          <GoogleAdsIcon size={13} />
-          <span className="text-[9px] sm:text-xs font-mono font-bold text-slate-800">Google Ads</span>
+          <GoogleAdsIcon size={14} className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+          <span className="text-[10px] sm:text-xs font-mono font-bold text-slate-800">Google Ads</span>
         </motion.div>
 
         {/* 10. Instagram (Bottom Center Floating Badge) */}
         <motion.div
           animate={{ y: [2, -2, 2] }}
           transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
-          className="absolute -bottom-5 sm:-bottom-6 left-1/2 -translate-x-1/2 z-20 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center gap-1.5 hover:scale-105 transition-transform cursor-pointer"
+          className="absolute -bottom-5 sm:-bottom-6 left-1/2 -translate-x-1/2 z-20 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white shadow-xl shadow-black/40 border border-slate-100 flex items-center gap-1.5 hover:scale-105 transition-transform cursor-pointer"
           title="Instagram Marketing"
         >
-          <InstagramIcon size={13} />
-          <span className="text-[9px] sm:text-xs font-mono font-bold text-slate-800">Instagram</span>
+          <InstagramIcon size={14} className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+          <span className="text-[10px] sm:text-xs font-mono font-bold text-slate-800">Instagram</span>
         </motion.div>
 
       </motion.div>

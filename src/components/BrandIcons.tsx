@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 
 interface IconProps {
   className?: string;
@@ -31,6 +31,9 @@ export function ChatGPTIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
  * Official Google Gemini 4-Point Star Sparkle
  */
 export function GeminiIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
+  const rawId = useId();
+  const gradId = `gemini-grad-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+
   return (
     <svg
       width={size}
@@ -42,15 +45,15 @@ export function GeminiIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
       aria-label="Google Gemini"
     >
       <defs>
-        <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#1B72E8" />
-          <stop offset="50%" stopColor="#7B57E4" />
+          <stop offset="45%" stopColor="#7B57E4" />
           <stop offset="100%" stopColor="#D96570" />
         </linearGradient>
       </defs>
       <path
-        d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"
-        fill="url(#geminiGrad)"
+        d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"
+        fill={`url(#${gradId})`}
       />
     </svg>
   );
@@ -71,7 +74,7 @@ export function ClaudeIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
       aria-label="Claude"
     >
       <path
-        d="M13.89 2.5a.6.6 0 0 0-.89-.31L9.75 3.9a.6.6 0 0 0-.27.68l.94 3.42a.6.6 0 0 1-.36.72L6.8 9.9a.6.6 0 0 0-.25.86l2.12 3.12a.6.6 0 0 1 0 .7l-2.12 3.12a.6.6 0 0 0 .25.86l3.26 1.18a.6.6 0 0 1 .36.72l-.94 3.42a.6.6 0 0 0 .27.68l3.25 1.71a.6.6 0 0 0 .89-.31l1.45-3.23a.6.6 0 0 1 .68-.34l3.45.69a.6.6 0 0 0 .68-.49l.75-3.59a.6.6 0 0 1 .53-.47l3.61-.39a.6.6 0 0 0 .53-.66l-.7-3.6a.6.6 0 0 1 .18-.54l2.67-2.52a.6.6 0 0 0 0-.85l-2.67-2.52a.6.6 0 0 1-.18-.54l.7-3.6a.6.6 0 0 0-.53-.66l-3.61-.39a.6.6 0 0 1-.53-.47l-.75-3.59a.6.6 0 0 0-.68-.49l-3.45.69a.6.6 0 0 1-.68-.34L13.89 2.5Z"
+        d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"
         fill="#D97757"
       />
     </svg>
@@ -82,6 +85,9 @@ export function ClaudeIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
  * Official Canva Gradient Script C Mark
  */
 export function CanvaIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
+  const rawId = useId();
+  const gradId = `canva-grad-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+
   return (
     <svg
       width={size}
@@ -93,12 +99,12 @@ export function CanvaIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
       aria-label="Canva"
     >
       <defs>
-        <linearGradient id="canvaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#00C4CC" />
           <stop offset="100%" stopColor="#7D2AE8" />
         </linearGradient>
       </defs>
-      <circle cx="12" cy="12" r="11" fill="url(#canvaGrad)" />
+      <circle cx="12" cy="12" r="11" fill={`url(#${gradId})`} />
       <path
         d="M15.8 8.8c-.6-.7-1.5-1.1-2.6-1.1-2.4 0-4.3 1.9-4.3 4.3s1.9 4.3 4.3 4.3c1.2 0 2.2-.4 2.8-1.2.3-.4.2-1-.2-1.3-.4-.3-1-.2-1.3.2-.4.5-1 .7-1.6.7-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5c.8 0 1.4.3 1.8.8.3.4.9.5 1.3.2.4-.3.4-.9.1-1.3l-.1-.1z"
         fill="#FFFFFF"
@@ -111,6 +117,9 @@ export function CanvaIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
  * Official Adobe Firefly Creative Flare Mark
  */
 export function AdobeFireflyIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
+  const rawId = useId();
+  const gradId = `firefly-grad-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+
   return (
     <svg
       width={size}
@@ -122,7 +131,7 @@ export function AdobeFireflyIcon({ className = "w-5 h-5", size = 20 }: IconProps
       aria-label="Adobe Firefly"
     >
       <defs>
-        <linearGradient id="fireflyGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#FF1361" />
           <stop offset="50%" stopColor="#FFF800" />
           <stop offset="100%" stopColor="#00F0FF" />
@@ -131,7 +140,7 @@ export function AdobeFireflyIcon({ className = "w-5 h-5", size = 20 }: IconProps
       <rect width="24" height="24" rx="5" fill="#20113B" />
       <path
         d="M6 18L12 5L18 18H14.5L13.2 15H10.8L9.5 18H6ZM11.4 12.8H12.6L12 10.5L11.4 12.8Z"
-        fill="url(#fireflyGrad1)"
+        fill={`url(#${gradId})`}
       />
       <circle cx="17.5" cy="6.5" r="2" fill="#00F0FF" />
     </svg>
@@ -153,12 +162,9 @@ export function PerplexityIcon({ className = "w-5 h-5", size = 20 }: IconProps) 
       aria-label="Perplexity"
     >
       <path
-        d="M12 2V22M2 12H22M4.93 4.93L19.07 19.07M19.07 4.93L4.93 19.07"
-        stroke="#20B2AA"
-        strokeWidth="2.5"
-        strokeLinecap="round"
+        d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"
+        fill="#20B2AA"
       />
-      <circle cx="12" cy="12" r="3" fill="#134E4A" stroke="#20B2AA" strokeWidth="2" />
     </svg>
   );
 }
@@ -267,6 +273,9 @@ export function FacebookIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
  * Official Instagram Gradient Mark
  */
 export function InstagramIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
+  const rawId = useId();
+  const gradId = `ig-grad-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+
   return (
     <svg
       width={size}
@@ -278,7 +287,7 @@ export function InstagramIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
       aria-label="Instagram"
     >
       <defs>
-        <radialGradient id="igRadial" cx="30%" cy="107%" r="130%">
+        <radialGradient id={gradId} cx="30%" cy="107%" r="130%">
           <stop offset="0%" stopColor="#fdf497" />
           <stop offset="5%" stopColor="#fdf497" />
           <stop offset="45%" stopColor="#fd5949" />
@@ -286,7 +295,7 @@ export function InstagramIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
           <stop offset="90%" stopColor="#285AEB" />
         </radialGradient>
       </defs>
-      <rect width="22" height="22" x="1" y="1" rx="6" fill="url(#igRadial)" />
+      <rect width="22" height="22" x="1" y="1" rx="6" fill={`url(#${gradId})`} />
       <rect width="13" height="13" x="5.5" y="5.5" rx="3.5" stroke="white" strokeWidth="1.8" fill="none" />
       <circle cx="12" cy="12" r="3.2" stroke="white" strokeWidth="1.8" fill="none" />
       <circle cx="15.8" cy="8.2" r="1" fill="white" />
@@ -358,6 +367,9 @@ export function GoogleAdsIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
  * Official Meta (Infinity Loop) Mark
  */
 export function MetaAdsIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
+  const rawId = useId();
+  const gradId = `meta-grad-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+
   return (
     <svg
       width={size}
@@ -369,16 +381,14 @@ export function MetaAdsIcon({ className = "w-5 h-5", size = 20 }: IconProps) {
       aria-label="Meta"
     >
       <defs>
-        <linearGradient id="metaGrad" x1="0%" y1="50%" x2="100%" y2="50%">
-          <stop offset="0%" stopColor="#0064e0" />
-          <stop offset="50%" stopColor="#0079f2" />
-          <stop offset="100%" stopColor="#0082fb" />
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#0064E0" />
+          <stop offset="100%" stopColor="#0081FB" />
         </linearGradient>
       </defs>
       <path
-        d="M16.9 5.5C14.7 5.5 13.1 6.8 12 8.3C10.9 6.8 9.3 5.5 7.1 5.5C3.7 5.5 1 8.4 1 12.3C1 16.9 4.6 20.6 9.3 20.6C11.2 20.6 12.9 20 14.2 18.8C15.5 20 17.2 20.6 19.1 20.6C23.8 20.6 27.4 16.9 27.4 12.3C27.4 8.4 20.3 5.5 16.9 5.5ZM7.1 18.3C4 18.3 1.6 15.8 1.6 12.6C1.6 9.5 4 7 7.1 7C8.8 7 10.3 7.9 11.2 9.3L12 10.5L12.8 9.3C13.7 7.9 15.2 7 16.9 7C20 7 22.4 9.5 22.4 12.6C22.4 15.8 20 18.3 16.9 18.3C15.2 18.3 13.7 17.4 12.8 16L12 14.8L11.2 16C10.3 17.4 8.8 18.3 7.1 18.3Z"
-        fill="url(#metaGrad)"
-        transform="matrix(0.85 0 0 0.85 0 0)"
+        d="M2.035 13.42c.26-6.058 5.405-11.598 10.229-5.27c4.326-6.307 9.45-.643 9.679 4.959a7 7 0 0 1-.706 4.066a3.33 3.33 0 0 1-4.42 1.038c-1.43-.84-2.25-2.386-3.111-3.756c-.57-.944-1.141-1.877-1.701-2.832c-1.256 2.003-2.822 5.727-4.97 6.733a3.485 3.485 0 0 1-4.211-1.183a6.22 6.22 0 0 1-.789-3.755m18.02.623c-.083-2.563-.747-6.422-3.756-6.961c-1.41 0-2.272 1.317-2.998 2.344v.166c.789 1.162 1.473 2.396 2.21 3.59c.602.87 1.587 2.81 2.531 3.184c1.577.498 2.064-1.058 2.013-2.303zm-15.883-.25v.54a2.48 2.48 0 0 0 .56 1.701a1.46 1.46 0 0 0 1.691.27a5.5 5.5 0 0 0 1.608-1.712c1.038-1.473 1.92-3.008 2.915-4.502c0-.104-.176-.28-.217-.384c-.851-1.14-2.075-2.635-3.694-2.075c-2.074 1.245-2.79 3.932-2.863 6.163"
+        fill={`url(#${gradId})`}
       />
     </svg>
   );
