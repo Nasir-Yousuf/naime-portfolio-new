@@ -7,6 +7,7 @@ import AIToolkitSection from "@/components/AIToolkitSection";
 import TeachingMethodology from "@/components/TeachingMethodology";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
+import VideoGallery from "@/components/VideoGallery";
 import CredentialsSection from "@/components/CredentialsSection";
 import CalendlySection from "@/components/CalendlySection";
 import Contact from "@/components/Contact";
@@ -47,7 +48,10 @@ export default function Home() {
         {/* 8. Commercial Proof (Giant Numbers on Black) */}
         <CaseStudiesSection />
 
-        {/* 9. Institutional Credentials Strip */}
+        {/* 9. Live Client Strategy, Pitches & Video Vault */}
+        <VideoGallery />
+
+        {/* 10. Institutional Credentials Strip */}
         <CredentialsSection />
 
         {/* 10. Direct Calendar Booking */}

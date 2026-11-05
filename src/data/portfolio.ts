@@ -111,6 +111,19 @@ export interface MediaItem {
   imagePlaceholderText: string;
 }
 
+export interface PortfolioVideo {
+  id: string;
+  title: string;
+  originalTitle: string;
+  youtubeId: string;
+  videoUrl: string;
+  category: "Client Strategy" | "Live Closing & Deals" | "Masterclass" | "Testimonial";
+  format: "standard" | "short";
+  badge: string;
+  description: string;
+  thumbnailUrl: string;
+}
+
 export interface CredentialItem {
   id: string;
   title: string;
@@ -876,6 +889,119 @@ export const portfolioData = {
       aspectRatio: "landscape",
     },
   ] as MediaItem[],
+
+  youtubeChannelUrl: "https://www.youtube.com/@shine_with_naime",
+
+  portfolioVideos: [
+    {
+      id: "vid-1",
+      title: "Live Zoom Call: High-Ticket Client Closing & Payment Proof",
+      originalTitle: "Live Zoom Call: সঠিক প্রেজেন্টেশন দিয়ে হাই-টিকেট ক্লায়েন্ট ক্লোজিং ও পেমেন্ট প্রুফ! #freelancing101",
+      youtubeId: "7Oytrn2SB9o",
+      videoUrl: "https://youtube.com/shorts/7Oytrn2SB9o?feature=share",
+      category: "Live Closing & Deals",
+      format: "short",
+      badge: "High-Ticket Closing",
+      description: "Direct client presentation deconstruction demonstrating international high-ticket client closing and live payment confirmation.",
+      thumbnailUrl: "https://i.ytimg.com/vi/7Oytrn2SB9o/hqdefault.jpg",
+    },
+    {
+      id: "vid-2",
+      title: "International Client Icebreaking to Live Strategy Pitch",
+      originalTitle: "ইন্টারন্যাশনাল ক্লায়েন্টের সাথে Icebreaking থেকে শুরু করে Live Strategy Pitch! 🔥| Digital Marketing",
+      youtubeId: "wQ3TjR0gccg",
+      videoUrl: "https://youtu.be/wQ3TjR0gccg",
+      category: "Client Strategy",
+      format: "standard",
+      badge: "Live Strategy Pitch",
+      description: "Step-by-step breakdown of warming up international clients, handling objections, and pitching full-funnel marketing systems live on Zoom.",
+      thumbnailUrl: "https://i.ytimg.com/vi/wQ3TjR0gccg/hqdefault.jpg",
+    },
+    {
+      id: "vid-3",
+      title: "Why Social Media is the Biggest Advertising Asset",
+      originalTitle: "Why Social Media is the Biggest Advertising Ag",
+      youtubeId: "R1vX9urV9Wk",
+      videoUrl: "https://youtu.be/R1vX9urV9Wk",
+      category: "Masterclass",
+      format: "standard",
+      badge: "Market Perspective",
+      description: "Strategic analysis of media dominance, paid attention models, and how businesses leverage modern social platforms over traditional ad agencies.",
+      thumbnailUrl: "https://i.ytimg.com/vi/R1vX9urV9Wk/hqdefault.jpg",
+    },
+    {
+      id: "vid-4",
+      title: "Why Posting More Won't Grow Your Brand Anymore (Do This Instead)",
+      originalTitle: "Why Posting More Won't Grow Your Brand Anymore! (Do This Instead)",
+      youtubeId: "laoYCmr9VsU",
+      videoUrl: "https://youtu.be/laoYCmr9VsU",
+      category: "Masterclass",
+      format: "standard",
+      badge: "Organic Growth",
+      description: "Why high-frequency, low-intent content fails to convert, and the high-leverage frameworks required to build durable authority.",
+      thumbnailUrl: "https://i.ytimg.com/vi/laoYCmr9VsU/hqdefault.jpg",
+    },
+    {
+      id: "vid-5",
+      title: "Inside a $640 Social Media Agency Deal | Live Client Meeting to Payment",
+      originalTitle: "Inside a $640 Social Media Agency Deal | Live Client Meeting to Payment",
+      youtubeId: "w85NJLAcP7g",
+      videoUrl: "https://youtube.com/shorts/w85NJLAcP7g?feature=share",
+      category: "Live Closing & Deals",
+      format: "short",
+      badge: "$640 Retainer Proof",
+      description: "Real-time client meeting recording showing the transition from discovery dialogue directly to closed deal and payment.",
+      thumbnailUrl: "https://i.ytimg.com/vi/w85NJLAcP7g/hqdefault.jpg",
+    },
+    {
+      id: "vid-6",
+      title: "Inside a Live US Real Estate Client Strategy Call | Agency BTS",
+      originalTitle: "Inside a Live US Real Estate Client Strategy Call | Social Media Agency BTS",
+      youtubeId: "rrcHJJl5wGw",
+      videoUrl: "https://youtu.be/rrcHJJl5wGw",
+      category: "Client Strategy",
+      format: "standard",
+      badge: "US Client Session",
+      description: "Unedited sprint session consulting an American real estate client on paid advertising funnels and localized lead generation.",
+      thumbnailUrl: "https://i.ytimg.com/vi/rrcHJJl5wGw/hqdefault.jpg",
+    },
+    {
+      id: "vid-7",
+      title: "How We Helped Our Client Grow on LinkedIn | Client Testimonial",
+      originalTitle: "How We Helped Our Client Grow on LinkedIn | Honest Client Testimonial #shorts",
+      youtubeId: "xulz_zT-zRA",
+      videoUrl: "https://youtube.com/shorts/xulz_zT-zRA?feature=share",
+      category: "Testimonial",
+      format: "short",
+      badge: "Client Review",
+      description: "Unfiltered client video testimonial validating organic executive brand growth and genuine LinkedIn performance metrics.",
+      thumbnailUrl: "https://i.ytimg.com/vi/xulz_zT-zRA/hqdefault.jpg",
+    },
+    {
+      id: "vid-8",
+      title: "Inside a Live US Client Strategy Call: Building 100% Organic Personal Brands",
+      originalTitle: "Inside a Live US Client Strategy Call: How We Build 100% Organic Personal Brands!",
+      youtubeId: "xirAyEgr1Ds",
+      videoUrl: "https://youtu.be/xirAyEgr1Ds",
+      category: "Client Strategy",
+      format: "standard",
+      badge: "Organic Personal Brand",
+      description: "Comprehensive Zoom call demonstrating audience persona architecture, compounding reach, and organic funnel design.",
+      thumbnailUrl: "https://i.ytimg.com/vi/xirAyEgr1Ds/hqdefault.jpg",
+    },
+    {
+      id: "vid-9",
+      title: "Why Smart Leaders Delegate Social Media Growth | Business Mindset",
+      originalTitle: "Why Smart Leaders Delegate Social Media Growth | Real Client Meeting & Business Mindset",
+      youtubeId: "05msqdG-uHw",
+      videoUrl: "https://youtu.be/05msqdG-uHw",
+      category: "Masterclass",
+      format: "standard",
+      badge: "Leadership & Strategy",
+      description: "Deconstructing why agency owners and business leaders must delegate social marketing execution to scale their core operations.",
+      thumbnailUrl: "https://i.ytimg.com/vi/05msqdG-uHw/hqdefault.jpg",
+    },
+  ] as PortfolioVideo[],
 
   teachingPillars: [
     {
