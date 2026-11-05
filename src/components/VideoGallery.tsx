@@ -270,28 +270,40 @@ export default function VideoGallery() {
       {/* Interactive Lightbox Video Modal */}
       <AnimatePresence>
         {selectedVideo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-2.5 sm:p-5 md:p-8 overscroll-contain">
             {/* Backdrop Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedVideo(null)}
-              className="absolute inset-0 bg-slate-950/85 backdrop-blur-md cursor-pointer"
+              className="absolute inset-0 bg-black/90 backdrop-blur-md cursor-pointer"
             />
+
+            {/* Omnipresent Floating Close Button (Guaranteed visible on all mobile & desktop viewports) */}
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="fixed top-3 right-3 sm:top-5 sm:right-5 z-[110] p-2.5 sm:p-3 rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 shadow-2xl backdrop-blur-md active:scale-90 transition-all cursor-pointer flex items-center gap-1.5 group"
+              aria-label="Close video player"
+            >
+              <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-200 text-emerald-400 group-hover:text-white" />
+              <span className="text-xs font-mono pr-1 hidden sm:inline text-slate-300 font-semibold">
+                Close
+              </span>
+            </button>
 
             {/* Modal Dialog Content */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className={`relative z-10 w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl shadow-black flex flex-col ${
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative z-10 w-full max-h-[92dvh] sm:max-h-[88vh] overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-800 bg-slate-950 shadow-2xl shadow-black flex flex-col ${
                 selectedVideo.format === "short" ? "max-w-md" : "max-w-4xl"
               }`}
             >
               {/* Modal Top Header Bar */}
-              <div className="px-4 sm:px-6 py-3.5 border-b border-slate-800 bg-slate-950/90 flex items-center justify-between gap-3">
+              <div className="shrink-0 px-3.5 sm:px-6 py-2.5 sm:py-3.5 border-b border-slate-800/90 bg-slate-950/95 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-[10px] font-mono text-emerald-400 shrink-0">
                     <CheckCircle2 className="w-3 h-3 text-emerald-400" />
@@ -300,8 +312,15 @@ export default function VideoGallery() {
                   <span className="text-xs font-mono text-slate-400 truncate hidden sm:inline">
                     {selectedVideo.category}
                   </span>
+                  {selectedVideo.format === "short" && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-950/60 border border-red-800/60 text-[10px] font-mono text-red-300">
+                      <Smartphone className="w-2.5 h-2.5" />
+                      <span>Shorts (9:16)</span>
+                    </span>
+                  )}
                 </div>
 
+                {/* In-header close button */}
                 <button
                   onClick={() => setSelectedVideo(null)}
                   className="p-1.5 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0"
@@ -311,33 +330,43 @@ export default function VideoGallery() {
                 </button>
               </div>
 
-              {/* Video Player Frame */}
-              <div
-                className={`relative w-full bg-black ${
-                  selectedVideo.format === "short"
-                    ? "aspect-[9/16] max-h-[70vh] mx-auto"
-                    : "aspect-video"
-                }`}
-              >
-                <iframe
-                  src={getEmbedUrl(selectedVideo.youtubeId)}
-                  title={selectedVideo.title}
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              </div>
+              {/* Video Player Frame: Custom Responsive Architecture for 9:16 Shorts vs 16:9 Videos */}
+              {selectedVideo.format === "short" ? (
+                /* Mobile Phone Screen Frame for 9:16 Shorts */
+                <div className="relative w-full bg-gradient-to-b from-slate-950 via-black to-slate-950 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+                  <div className="relative h-[48dvh] sm:h-[56vh] max-h-[500px] aspect-[9/16] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-slate-800/90 bg-black">
+                    <iframe
+                      src={getEmbedUrl(selectedVideo.youtubeId)}
+                      title={selectedVideo.title}
+                      className="w-full h-full border-0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              ) : (
+                /* Cinematic Widescreen Frame for 16:9 Masterclasses */
+                <div className="relative w-full aspect-video bg-black">
+                  <iframe
+                    src={getEmbedUrl(selectedVideo.youtubeId)}
+                    title={selectedVideo.title}
+                    className="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              )}
 
               {/* Modal Bottom Metadata Bar */}
-              <div className="p-4 sm:p-6 bg-slate-950/90 border-t border-slate-800 space-y-2">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="space-y-1">
-                    <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+              <div className="shrink-0 overflow-y-auto max-h-[30dvh] sm:max-h-none p-3.5 sm:p-5 bg-slate-950/95 border-t border-slate-800/90 space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                  <div className="space-y-0.5 min-w-0">
+                    <h3 className="text-xs sm:text-base font-bold text-white leading-snug line-clamp-2 sm:line-clamp-none">
                       {selectedVideo.title}
                     </h3>
                     {selectedVideo.originalTitle &&
                       selectedVideo.originalTitle !== selectedVideo.title && (
-                        <p className="text-xs text-slate-400 font-mono">
+                        <p className="text-[11px] sm:text-xs text-slate-400 font-mono line-clamp-1">
                           {selectedVideo.originalTitle}
                         </p>
                       )}
@@ -347,14 +376,14 @@ export default function VideoGallery() {
                     href={selectedVideo.videoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-xs font-mono text-slate-300 hover:text-white transition-colors shrink-0 self-start sm:self-auto"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-300 hover:text-white transition-colors shrink-0 self-start sm:self-auto"
                   >
                     <span>Open in YouTube</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
 
-                <p className="text-xs text-slate-400 font-light leading-relaxed pt-1">
+                <p className="text-[11px] sm:text-xs text-slate-400 font-light leading-relaxed line-clamp-2 sm:line-clamp-3">
                   {selectedVideo.description}
                 </p>
               </div>
