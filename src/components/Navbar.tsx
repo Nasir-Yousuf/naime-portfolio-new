@@ -24,7 +24,7 @@ export default function Navbar() {
     { name: "AI Ecosystem", href: "#ai-toolkit" },
     { name: "Methodology", href: "#methodology" },
     { name: "Experience", href: "#experience" },
-    { name: "Live Vault", href: "#vault" },
+    { name: "Gallery", href: "#gallery" },
     { name: "Credentials", href: "#credentials" },
   ];
 

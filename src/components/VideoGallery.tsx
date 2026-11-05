@@ -18,7 +18,7 @@ import {
 import { portfolioData, PortfolioVideo } from "@/data/portfolio";
 
 export default function VideoGallery() {
-  const { portfolioVideos, youtubeChannelUrl } = portfolioData;
+  const { portfolioVideos } = portfolioData;
 
   const [selectedVideo, setSelectedVideo] = useState<PortfolioVideo | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("All");
@@ -80,9 +80,11 @@ export default function VideoGallery() {
 
   return (
     <section
-      id="vault"
+      id="gallery"
       className="relative py-24 sm:py-32 bg-slate-950 text-white border-b border-slate-900 overflow-hidden"
     >
+      {/* Anchor compatibility for previous #vault links */}
+      <span id="vault" className="absolute -top-20 left-0 opacity-0 pointer-events-none" />
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-500/10 blur-[170px] pointer-events-none rounded-full" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[300px] bg-teal-500/5 blur-[150px] pointer-events-none rounded-full" />
@@ -262,50 +264,6 @@ export default function VideoGallery() {
             );
           })}
         </div>
-
-        {/* YouTube Channel Banner / Action Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-12 sm:mt-16 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-emerald-950/30 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-md"
-        >
-          <div className="flex items-start sm:items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-red-600/10 border border-red-500/30 flex items-center justify-center shrink-0 text-red-500">
-              <svg
-                className="w-6 h-6 fill-current"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h4 className="text-base sm:text-lg font-bold text-white">
-                  Explore More on YouTube
-                </h4>
-                <span className="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-800/80">
-                  @shine_with_naime
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-400 font-light mt-0.5">
-                Full-length buyer interviews, international freelancing tips, and campaign deconstructions uploaded regularly.
-              </p>
-            </div>
-          </div>
-
-          <a
-            href={youtubeChannelUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-800 hover:bg-slate-750 text-white hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/50 text-xs font-mono font-semibold transition-all shrink-0 group"
-          >
-            <span>Visit YouTube Channel</span>
-            <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-        </motion.div>
 
       </div>
 
