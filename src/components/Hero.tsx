@@ -278,9 +278,9 @@ export default function Hero() {
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main 2-Column Hero Grid: Perfectly Balanced Symmetrical Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Bold Typography & Instructor Identity (7 cols on lg) */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left flex flex-col justify-center">
@@ -377,10 +377,10 @@ export default function Hero() {
 
         </div>
 
-        {/* Full-Width Bottom Bar: Core Marketing Platforms Taught (Guaranteed 1-Line Symmetrical Ribbon) */}
+        {/* Full-Width Bottom Bar: Core Marketing Platforms Taught (Expansive Single-Line Ribbon) */}
         <motion.div
           {...fadeUp(0.5)}
-          className="mt-12 sm:mt-16 lg:mt-20 w-full overflow-x-auto no-scrollbar py-2.5 sm:py-3 px-4 sm:px-6 rounded-2xl sm:rounded-full bg-slate-900/80 border border-slate-800/80 backdrop-blur-md shadow-2xl shadow-black/40 flex items-center justify-between gap-3 sm:gap-4 lg:gap-5 flex-nowrap"
+          className="mt-12 sm:mt-16 lg:mt-20 w-full overflow-x-auto no-scrollbar py-3 px-4 sm:px-8 rounded-2xl sm:rounded-full bg-slate-900/80 border border-slate-800/80 backdrop-blur-md shadow-2xl shadow-black/40 flex items-center justify-between gap-4 lg:gap-6 flex-nowrap"
         >
           <div className="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
@@ -390,14 +390,14 @@ export default function Hero() {
             <span className="h-4 w-px bg-slate-700/80 shrink-0 hidden sm:block" />
           </div>
 
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap flex-nowrap">
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 whitespace-nowrap flex-nowrap">
             {platforms.map((p, idx) => (
               <a
                 key={idx}
                 href={p.href}
                 target={p.isExternal ? "_blank" : undefined}
                 rel={p.isExternal ? "noopener noreferrer" : undefined}
-                className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-slate-850/80 border border-slate-800/80 hover:border-emerald-500/50 hover:bg-slate-800 hover:text-white text-[11px] sm:text-xs font-mono text-slate-300 transition-all duration-200 shrink-0 whitespace-nowrap group cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-850/80 border border-slate-800/80 hover:border-emerald-500/50 hover:bg-slate-800 hover:text-white text-xs font-mono text-slate-300 transition-all duration-200 shrink-0 whitespace-nowrap group cursor-pointer"
                 title={p.name}
               >
                 <span className="shrink-0 group-hover:scale-110 transition-transform">
