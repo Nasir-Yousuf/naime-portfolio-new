@@ -8,8 +8,6 @@ import {
   X,
   ExternalLink,
   Sparkles,
-  Smartphone,
-  Tv,
   CheckCircle2,
   Video,
   Layers,
@@ -157,7 +155,6 @@ export default function VideoGallery() {
         {/* Video Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {filteredVideos.map((video, idx) => {
-            const isShort = video.format === "short";
             const hasImgError = imgErrors[video.id];
 
             return (
@@ -198,26 +195,11 @@ export default function VideoGallery() {
                   {/* Gradient Vignette Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
 
-                  {/* Top Floating Badges */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950/85 border border-slate-800 text-[10px] font-mono font-medium text-emerald-400 backdrop-blur-md">
+                  {/* Top Floating Badge */}
+                  <div className="absolute top-3 left-3 pointer-events-none">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950/85 border border-slate-800 text-[10px] font-mono font-medium text-emerald-400 backdrop-blur-md shadow-sm">
                       <Sparkles className="w-3 h-3 text-emerald-400" />
                       <span>{video.badge}</span>
-                    </span>
-
-                    {/* Format Pill */}
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-950/85 border border-slate-800 text-[10px] font-mono text-slate-300 backdrop-blur-md">
-                      {isShort ? (
-                        <>
-                          <Smartphone className="w-3 h-3 text-red-400" />
-                          <span>Short</span>
-                        </>
-                      ) : (
-                        <>
-                          <Tv className="w-3 h-3 text-emerald-400" />
-                          <span>16:9 Video</span>
-                        </>
-                      )}
                     </span>
                   </div>
 
@@ -312,12 +294,6 @@ export default function VideoGallery() {
                   <span className="text-xs font-mono text-slate-400 truncate hidden sm:inline">
                     {selectedVideo.category}
                   </span>
-                  {selectedVideo.format === "short" && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-950/60 border border-red-800/60 text-[10px] font-mono text-red-300">
-                      <Smartphone className="w-2.5 h-2.5" />
-                      <span>Shorts (9:16)</span>
-                    </span>
-                  )}
                 </div>
 
                 {/* In-header close button */}
