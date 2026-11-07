@@ -16,6 +16,8 @@ export interface PersonalInfo {
     linkedin: string;
     whatsapp: string;
     facebook: string;
+    instagram?: string;
+    youtube?: string;
   };
 }
 
@@ -189,7 +191,9 @@ export const portfolioData = {
     socials: {
       linkedin: "https://www.linkedin.com/in/shinewithnaime/",
       whatsapp: "https://wa.me/8801625596245",
-      facebook: "https://facebook.com",
+      facebook: "https://www.facebook.com/shinewithnaime",
+      instagram: "https://www.instagram.com/shinewithnaime",
+      youtube: "https://www.youtube.com/@shine_with_naime",
     },
   } as PersonalInfo,
 

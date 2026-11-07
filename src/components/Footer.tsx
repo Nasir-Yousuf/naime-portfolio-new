@@ -14,6 +14,7 @@ import {
   Award,
 } from "lucide-react";
 import { LinkedinIcon, YoutubeIcon } from "@/components/SocialIcons";
+import { FacebookIcon, InstagramIcon } from "@/components/BrandIcons";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Footer() {
@@ -226,6 +227,38 @@ export default function Footer() {
                 </div>
                 <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-red-400 transition-colors" />
               </a>
+
+              {/* Facebook Profile */}
+              {personal.socials.facebook && (
+                <a
+                  href={personal.socials.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-850 hover:border-blue-500/40 text-slate-300 hover:text-white transition-all"
+                >
+                  <div className="flex items-center gap-2">
+                    <FacebookIcon size={16} className="w-4 h-4 text-blue-400 shrink-0" />
+                    <span className="text-[11px] font-mono">Facebook</span>
+                  </div>
+                  <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-blue-400 transition-colors" />
+                </a>
+              )}
+
+              {/* Instagram Profile */}
+              {personal.socials.instagram && (
+                <a
+                  href={personal.socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 hover:bg-slate-900 border border-slate-850 hover:border-pink-500/40 text-slate-300 hover:text-white transition-all"
+                >
+                  <div className="flex items-center gap-2">
+                    <InstagramIcon size={16} className="w-4 h-4 text-pink-400 shrink-0" />
+                    <span className="text-[11px] font-mono">Instagram</span>
+                  </div>
+                  <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-pink-400 transition-colors" />
+                </a>
+              )}
 
               {/* Email */}
               <a

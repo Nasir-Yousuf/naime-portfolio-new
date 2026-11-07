@@ -7,7 +7,8 @@ import {
   Copy,
   Check,
 } from "lucide-react";
-import { LinkedinIcon } from "@/components/SocialIcons";
+import { LinkedinIcon, YoutubeIcon } from "@/components/SocialIcons";
+import { FacebookIcon, InstagramIcon } from "@/components/BrandIcons";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Contact() {
@@ -113,9 +114,49 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-slate-700 hover:text-emerald-700"
                 >
-                  <LinkedinIcon className="w-3.5 h-3.5" />
+                  <LinkedinIcon className="w-3.5 h-3.5 text-emerald-600" />
                   <span>LinkedIn Profile</span>
                 </a>
+              </div>
+
+              {/* YouTube Channel */}
+              <div className="space-y-1 pt-3 border-t border-slate-100">
+                <span className="text-xs text-slate-500 font-mono block">Video Masterclasses</span>
+                <a
+                  href={personal.socials.youtube || portfolioData.youtubeChannelUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-red-600 hover:text-red-700"
+                >
+                  <YoutubeIcon className="w-3.5 h-3.5 text-red-500" />
+                  <span>YouTube (@shine_with_naime)</span>
+                </a>
+              </div>
+
+              {/* Facebook & Instagram */}
+              <div className="space-y-1 pt-3 border-t border-slate-100">
+                <span className="text-xs text-slate-500 font-mono block">Social Profiles</span>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={personal.socials.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-blue-600 hover:text-blue-700"
+                  >
+                    <FacebookIcon size={14} className="w-3.5 h-3.5 text-blue-600" />
+                    <span>Facebook</span>
+                  </a>
+                  <span className="text-slate-300">•</span>
+                  <a
+                    href={personal.socials.instagram || "https://www.instagram.com/shinewithnaime"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-pink-600 hover:text-pink-700"
+                  >
+                    <InstagramIcon size={14} className="w-3.5 h-3.5 text-pink-500" />
+                    <span>Instagram</span>
+                  </a>
+                </div>
               </div>
             </div>
 
