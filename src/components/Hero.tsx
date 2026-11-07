@@ -377,33 +377,33 @@ export default function Hero() {
 
         </div>
 
-        {/* Full-Width Bottom Bar: Core Marketing Platforms Taught (Symmetrical Glass Ribbon) */}
+        {/* Full-Width Bottom Bar: Core Marketing Platforms Taught (Guaranteed 1-Line Symmetrical Ribbon) */}
         <motion.div
           {...fadeUp(0.5)}
-          className="mt-12 sm:mt-16 lg:mt-20 p-3.5 sm:p-4 rounded-2xl sm:rounded-full bg-slate-900/80 border border-slate-800/80 backdrop-blur-md shadow-2xl shadow-black/40 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4"
+          className="mt-12 sm:mt-16 lg:mt-20 w-full overflow-x-auto no-scrollbar py-2.5 sm:py-3 px-4 sm:px-6 rounded-2xl sm:rounded-full bg-slate-900/80 border border-slate-800/80 backdrop-blur-md shadow-2xl shadow-black/40 flex items-center justify-between gap-3 sm:gap-4 lg:gap-5 flex-nowrap"
         >
-          <div className="flex items-center gap-2.5 px-2 shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-[0.18em] text-slate-400">
+          <div className="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-400 whitespace-nowrap">
               Core Marketing Platforms Taught:
             </span>
-            <span className="h-4 w-px bg-slate-700 hidden md:block" />
+            <span className="h-4 w-px bg-slate-700/80 shrink-0 hidden sm:block" />
           </div>
 
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 sm:gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap flex-nowrap">
             {platforms.map((p, idx) => (
               <a
                 key={idx}
                 href={p.href}
                 target={p.isExternal ? "_blank" : undefined}
                 rel={p.isExternal ? "noopener noreferrer" : undefined}
-                className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-slate-850/90 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800 hover:text-white text-xs font-mono text-slate-300 transition-all duration-200 group cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-slate-850/80 border border-slate-800/80 hover:border-emerald-500/50 hover:bg-slate-800 hover:text-white text-[11px] sm:text-xs font-mono text-slate-300 transition-all duration-200 shrink-0 whitespace-nowrap group cursor-pointer"
                 title={p.name}
               >
-                <span className="group-hover:scale-110 transition-transform">
+                <span className="shrink-0 group-hover:scale-110 transition-transform">
                   {p.icon}
                 </span>
-                <span>{p.name}</span>
+                <span className="whitespace-nowrap">{p.name}</span>
               </a>
             ))}
           </div>
